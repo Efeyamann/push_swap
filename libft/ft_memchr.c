@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: efe <efe@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/01 13:24:50 by efe               #+#    #+#             */
-/*   Updated: 2025/03/01 13:57:17 by efe              ###   ########.fr       */
+/*   Created: 2024/10/23 14:05:38 by esir              #+#    #+#             */
+/*   Updated: 2024/11/11 12:47:15 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-typedef struct s_node
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int				number;
-	struct s_node	*next;
-}	t_node;
+	unsigned char	*a;
+	size_t			i;
 
-#endif
+	i = 0;
+	a = (unsigned char *)s;
+	while (i < n)
+	{
+		if (a[i] == (unsigned char)c)
+		{
+			return (((void *)&a[i]));
+		}
+		i++;
+	}
+	return (NULL);
+}
