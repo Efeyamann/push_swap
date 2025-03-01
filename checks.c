@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: efe <efe@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 14:16:38 by efe               #+#    #+#             */
-/*   Updated: 2025/03/01 14:53:33 by efe              ###   ########.fr       */
+/*   Updated: 2025/03/01 15:28:34 by efe              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	is_number(const char *str)
+#include "push_swap.h"
+
+static int	is_number(const char *str)
 {
 	int	i;
 
@@ -28,7 +30,7 @@ int	is_number(const char *str)
 	return (1);
 }
 
-int	is_overflow(const char *str)
+static int	is_over_under_flow(const char *str)
 {
 	int	b;
 	int	i;
@@ -50,8 +52,36 @@ int	is_overflow(const char *str)
 	}
 	if (b < -2147483647 || b > 2147483647)
 	{
-		ft_printf("Error\n");
 		return (0);
 	}
 	return (a * b);
+}
+
+void	checker(char **argv)
+{
+	int	i;
+	int	result;
+
+	i = 0;
+	while (argv[i])
+	{
+		result = is_number(argv[i]);
+		if (result == 0)
+		{
+			ft_printf("Error\n");
+			exit(0);
+		}
+		i++;
+	}
+	i = 0;
+	while (argv[i])
+	{
+		result = is_over_under_flow(argv[i]);
+		if (result == 0)
+		{
+			ft_printf("Error\n");
+			exit(0);
+		}
+		i++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: efe <efe@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:24:50 by efe               #+#    #+#             */
-/*   Updated: 2025/03/01 14:27:25 by efe              ###   ########.fr       */
+/*   Updated: 2025/03/01 15:18:49 by efe              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 
 typedef struct s_node
 {
-	int				number;
+	int				value;
 	struct s_node	*next;
 }	t_node;
 
-int	is_number(const char *str);
+void	checker(char **argv);
 
 #endif
