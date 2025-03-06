@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	add_to_list(t_node **stack, int value)
+static void	add_to_list(t_node **stack, int value)
 {
 	t_node	*new;
 	t_node	*temp;
@@ -20,7 +20,7 @@ void	add_to_list(t_node **stack, int value)
 	new = new_mode(value);
 }
 
-t_node	*new_node(int value)
+static t_node	*new_node(int value)
 {
 	t_node	*node;
 
@@ -45,7 +45,7 @@ static int	is_duplicate(t_node *stack, int num)
 	return (0);
 }
 
-void	free_list(t_node *head)
+static void	free_list(t_node *head)
 {
 	t_node	*temp;
 
@@ -59,5 +59,8 @@ void	free_list(t_node *head)
 
 t_node	*create_list(int argc, char *argv[])
 {
+	int	i;
+
 	
+
 }

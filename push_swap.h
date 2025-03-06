@@ -23,5 +23,6 @@ typedef struct s_node
 }	t_node;
 
 void	checker(char **argv);
+t_node	*create_list(int argc, char *argv[]);
 
 #endif

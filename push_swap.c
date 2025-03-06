@@ -12,9 +12,15 @@
 
 #include "push_swap.h"
 
-int	main(int argc, char *argv)
+int	main(int argc, char *argv[])
 {
 	t_node	*stack;
 
 	stack = NULL;
+	if (argc < 2)
+	{
+		ft_printf("Error\n");
+		exit(0);
+	}
+	create_list(argc, argv);
 }
