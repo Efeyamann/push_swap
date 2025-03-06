@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	swap(t_node **stack)
+void	swap(t_node *stack)
 {
 	if
 }
