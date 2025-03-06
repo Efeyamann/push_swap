@@ -57,6 +57,19 @@ static int	is_over_under_flow(const char *str)
 	return (a * b);
 }
 
+int	is_duplicate(t_node *stack, int num)
+{
+	while (stack)
+	{
+		if (stack->value == num)
+		{
+			return (1);
+		}
+		stack = stack->next;
+	}
+	return (0);
+}
+
 void	checker(char **argv)
 {
 	int	i;

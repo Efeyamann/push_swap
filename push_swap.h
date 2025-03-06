@@ -24,5 +24,6 @@ typedef struct s_node
 
 void	checker(char **argv);
 t_node	*create_list(int argc, char *argv[]);
+int	is_duplicate(t_node *stack, int num);
 
 #endif

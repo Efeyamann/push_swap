@@ -32,19 +32,6 @@ static t_node	*new_node(int value)
 	return (node);
 }
 
-static int	is_duplicate(t_node *stack, int num)
-{
-	while (stack)
-	{
-		if (stack->value == num)
-		{
-			return (1);
-		}
-		stack = stack->next;
-	}
-	return (0);
-}
-
 static void	free_list(t_node *head)
 {
 	t_node	*temp;
@@ -57,10 +44,41 @@ static void	free_list(t_node *head)
 	}
 }
 
-t_node	*create_list(int argc, char *argv[])
+static void	append_to_list(t_node **head, int value)
 {
-	int	i;
+	t_node	*current;
 
-	
+	if (is_duplicate(*head, value))
+	{
+		free_list(*head);
+		ft_printf("Error\n");
+		exit(0);
+	}
+	current = *head;
+	while (current->next)
+		current = current->next;
+	current->next = new_node(value);
+	if (!current->next)
+	{
+		free_list(*head);
+		exit(0);
+	}
+}
 
+t_node	*create_list(char *argv[])
+{
+	int		i;
+	int		value;
+	t_node	*head;
+
+	head = new_node(ft_atoi(argv[1]));
+	if (!head)
+		return (NULL);
+	i = 2;
+	while (argv[i])
+	{
+		append_to_list(&head, ft_atoi(argv[i]));
+		i++;
+	}
+	return (head);
 }

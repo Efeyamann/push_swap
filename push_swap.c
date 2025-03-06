@@ -14,13 +14,15 @@
 
 int	main(int argc, char *argv[])
 {
-	t_node	*stack;
+	t_node	*stack_a;
+	t_node	*stack_b;
 
-	stack = NULL;
+	stack_a = NULL;
+	stack_b = NULL;
 	if (argc < 2)
 	{
 		ft_printf("Error\n");
 		exit(0);
 	}
-	create_list(argc, argv);
+	stack_a = create_list(argc, argv);
 }
