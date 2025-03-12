@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static int	is_number(const char *str)
+int	is_number(const char *str)
 {
 	int	i;
 

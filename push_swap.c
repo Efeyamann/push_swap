@@ -24,5 +24,5 @@ int	main(int argc, char *argv[])
 		ft_printf("Error\n");
 		exit(0);
 	}
-	stack_a = create_list(argc, argv);
+	stack_a = create_list(argv);
 }

@@ -22,7 +22,8 @@ typedef struct s_node
 	struct s_node	*next;
 }	t_node;
 
-t_node	*create_list(int argc, char *argv[]);
+t_node	*create_list(char *argv[]);
+int		is_number(const char str);
 int		is_duplicate(t_node *stack, int num);
 void	checker(char **argv);
 void	sa(t_node **stack_a);
