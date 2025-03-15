@@ -32,6 +32,8 @@ typedef struct s_node
 
 t_node	*create_list(char *argv[]);
 t_node	*last_node(t_node *stack);
+t_node	*min_node(t_node *stack);
+t_node	*max_node(t_node *stack);
 int		stack_len(t_node *stack);
 int		is_number(const char str);
 int		is_duplicate(t_node *stack, int num);
