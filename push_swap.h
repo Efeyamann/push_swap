@@ -6,7 +6,7 @@
 /*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:24:50 by efe               #+#    #+#             */
-/*   Updated: 2025/03/08 14:05:47 by esir             ###   ########.fr       */
+/*   Updated: 2025/03/15 14:42:54 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,18 @@
 # include "libft/libft.h"
 # include "ft_printf/ft_printf.h"
 
+#include <stdbool.h>
+
 typedef struct s_node
 {
 	int				value;
+	int				index;
+	int				push_cost;
+	bool			above_median;
+	bool			cheapest;
 	struct s_node	*next;
+	struct s_node	*prev;
+	struct s_node	*target_node;
 }	t_node;
 
 t_node	*create_list(char *argv[]);
