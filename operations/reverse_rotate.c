@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: efe <efe@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 13:41:25 by esir              #+#    #+#             */
-/*   Updated: 2025/03/08 14:01:56 by esir             ###   ########.fr       */
+/*   Updated: 2025/03/19 22:06:12 by efe              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	rra(t_node **stack_a)
 	t_node	*prev;
 
 	if (!stack_a || !(*stack_a) || !((*stack_a)->next))
-		return ; 
+		return ;
 	temp = *stack_a;
 	prev = NULL;
 	last = *stack_a;
@@ -40,7 +40,7 @@ void	rrb(t_node **stack_b)
 	t_node	*prev;
 
 	if (!stack_b || !(*stack_b) || !((*stack_b)->next))
-		return ; 
+		return ;
 	temp = *stack_b;
 	prev = NULL;
 	last = *stack_b;

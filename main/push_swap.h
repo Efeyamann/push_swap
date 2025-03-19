@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: efe <efe@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:24:50 by efe               #+#    #+#             */
-/*   Updated: 2025/03/15 14:42:54 by esir             ###   ########.fr       */
+/*   Updated: 2025/03/19 22:04:50 by efe              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "libft/libft.h"
 # include "ft_printf/ft_printf.h"
 
-#include <stdbool.h>
+# include <stdbool.h>
 
 typedef struct s_node
 {
