@@ -82,7 +82,7 @@ t_node	*create_list(char *argv[])
 	t_node	*head;
 
 	head = NULL;
-	i = 1;
+	i = 0;
 	while (argv[i])
 	{
 		if (!is_valid_number(argv[i]))
