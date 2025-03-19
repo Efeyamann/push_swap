@@ -6,7 +6,7 @@
 /*   By: efe <efe@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:24:50 by efe               #+#    #+#             */
-/*   Updated: 2025/03/19 23:46:04 by efe              ###   ########.fr       */
+/*   Updated: 2025/03/19 23:57:23 by efe              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_node	*max_node(t_node *stack);
 int		stack_len(t_node *stack);
 int		is_number(const char str);
 int		is_duplicate(t_node *stack, int num);
+void	push_min(t_node **stack_a, t_node **stack_b);
 void	checker(char **argv);
 void	sa(t_node **stack_a);
 void	sb(t_node **stack_b);

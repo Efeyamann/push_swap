@@ -6,13 +6,11 @@
 /*   By: efe <efe@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 22:20:04 by efe               #+#    #+#             */
-/*   Updated: 2025/03/19 23:53:08 by efe              ###   ########.fr       */
+/*   Updated: 2025/03/19 23:58:12 by efe              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-
 
 void	sort_three(t_node **stack)
 {
@@ -29,6 +27,15 @@ void	sort_three(t_node **stack)
 		rra(stack);
 	if ((*stack)->value > (*stack)->next->value)
 		sa(stack);
+}
+
+void	sort_five(t_node **stack_a, t_node **stack_b)
+{
+	while (stack_len(*stack_a) > 3)
+		push_min(stack_a, stack_b);
+	sort_three(stack_a);
+	pa(stack_a, stack_b);
+	pa(stack_a, stack_b);
 }
 
 void	main_sort(t_node **stack_a, t_node **stack_b)
