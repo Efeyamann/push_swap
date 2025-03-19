@@ -6,7 +6,7 @@
 /*   By: efe <efe@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 19:53:38 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/19 22:10:26 by efe              ###   ########.fr       */
+/*   Updated: 2025/03/19 23:53:34 by efe              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,14 @@ t_node	*max_node(t_node *stack)
 		stack = stack->next;
 	}
 	return (max);
+}
+
+void	push_min(t_node **stack_a, t_node **stack_b)
+{
+	t_node	*min;
+
+	min = min_node(*stack_a);
+	while (*stack_a != min)
+		ra(stack_a);
+	pb(stack_a, stack_b);
 }

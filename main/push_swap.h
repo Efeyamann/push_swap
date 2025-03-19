@@ -6,7 +6,7 @@
 /*   By: efe <efe@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:24:50 by efe               #+#    #+#             */
-/*   Updated: 2025/03/19 22:04:50 by efe              ###   ########.fr       */
+/*   Updated: 2025/03/19 23:46:04 by efe              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,7 @@
 typedef struct s_node
 {
 	int				value;
-	int				index;
-	int				push_cost;
-	bool			above_median;
-	bool			cheapest;
 	struct s_node	*next;
-	struct s_node	*prev;
-	struct s_node	*target_node;
 }	t_node;
 
 t_node	*create_list(char *argv[]);
