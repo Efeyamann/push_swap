@@ -34,8 +34,8 @@ static void	sort_five(t_node **stack_a, t_node **stack_b)
 	while (stack_len(*stack_a) > 3)
 		push_min(stack_a, stack_b);
 	sort_three(stack_a);
-	pa(stack_a, stack_b);
-	pa(stack_a, stack_b);
+	while(*stack_b)
+		pa(stack_a, stack_b);
 }
 
 static void	push_to_b(t_node **stack_a, t_node **stack_b, int size)
@@ -43,17 +43,22 @@ static void	push_to_b(t_node **stack_a, t_node **stack_b, int size)
 	int swap_size;
 	int	n_smallest;
 	int count;
+	int	total_pushed;
 
 	swap_size = size / 4;
+	if (swap_size == 0)
+		swap_size = 1;
 	n_smallest = find_smallest(*stack_a, swap_size);
 	count = 0;
-	while(*stack_a)
+	total_pushed = 0;
+	while(*stack_a && total_pushed < size - 3)
 	{
 		if ((*stack_a)->value <= n_smallest)
 		{
 			pb(stack_a, stack_b);
 			count++;
-			if (count % swap_size == 0)
+			total_pushed++;
+			if (count % swap_size == 0 && *stack_a)
 				n_smallest = find_smallest(*stack_a, swap_size);
 		}
 		else
@@ -64,12 +69,27 @@ static void	push_to_b(t_node **stack_a, t_node **stack_b, int size)
 static void	push_to_a(t_node **stack_a, t_node **stack_b)
 {
 	t_node *highest_node;
-	
+	int		pos;
+	int		len;
+
 	while (*stack_b)
 	{
 		highest_node = max_node(*stack_b);
-		while (*stack_b != highest_node)
-			rb(stack_b);
+		pos = node_position(*stack_b, highest_node);
+		len = stack_len(*stack_b);
+		if (*stack_b != highest_node)
+		{
+			if ( pos <= len / 2)
+			{
+			while (*stack_b != highest_node)
+					rb(stack_b);
+			}
+			else
+			{
+				while(*stack_b != highest_node)
+					rrb(stack_b);
+			}
+		}	
 		pa(stack_a, stack_b);
 	}
 }

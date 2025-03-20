@@ -12,6 +12,20 @@
 
 #include "push_swap.h"
 
+int node_position(t_node *stack, t_node *target)
+{
+    int pos;
+
+    pos = 0;
+    while (stack)
+    {
+        if (stack == target)
+            return (pos);
+        pos++;
+        stack = stack->next;
+    }
+    return (-1);
+}
 static void bubble_sort(int *arr, int size)
 {
     int i;

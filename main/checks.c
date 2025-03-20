@@ -70,7 +70,7 @@ int	is_duplicate(t_node *stack, int num)
 	return (0);
 }
 
-void	checker(char **argv)
+int	checker(char **argv)
 {
 	int	i;
 	int	result;
@@ -78,23 +78,12 @@ void	checker(char **argv)
 	i = 0;
 	while (argv[i])
 	{
-		result = is_number(argv[i]);
-		if (result == 0)
+		if (!is_number(argv[i] || !is_over_under_flow(argv[i])))
 		{
 			ft_printf("Error\n");
-			exit(0);
+			return (0);
 		}
 		i++;
 	}
-	i = 0;
-	while (argv[i])
-	{
-		result = is_over_under_flow(argv[i]);
-		if (result == 0)
-		{
-			ft_printf("Error\n");
-			exit(0);
-		}
-		i++;
-	}
+	return (1);
 }
