@@ -38,6 +38,11 @@ void	sort_five(t_node **stack_a, t_node **stack_b)
 	pa(stack_a, stack_b);
 }
 
+void	push_to_b(t_node **stack, t_node **stack_b, int size)
+{
+	int swap_size;
+}
+
 void	main_sort(t_node **stack_a, t_node **stack_b)
 {
 	int	len;
