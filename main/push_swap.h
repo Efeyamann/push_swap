@@ -16,8 +16,6 @@
 # include "libft/libft.h"
 # include "ft_printf/ft_printf.h"
 
-# include <stdbool.h>
-
 typedef struct s_node
 {
 	int				value;
@@ -31,6 +29,7 @@ t_node	*max_node(t_node *stack);
 int		stack_len(t_node *stack);
 int		is_number(const char str);
 int		is_duplicate(t_node *stack, int num);
+int		find_smallest(t_node *stack, int n);
 void	push_min(t_node **stack_a, t_node **stack_b);
 void	checker(char **argv);
 void	sa(t_node **stack_a);

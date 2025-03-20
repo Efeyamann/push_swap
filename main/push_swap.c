@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	sort_three(t_node **stack)
+static void	sort_three(t_node **stack)
 {
 	int	a;
 	int	b;
@@ -29,7 +29,7 @@ void	sort_three(t_node **stack)
 		sa(stack);
 }
 
-void	sort_five(t_node **stack_a, t_node **stack_b)
+static void	sort_five(t_node **stack_a, t_node **stack_b)
 {
 	while (stack_len(*stack_a) > 3)
 		push_min(stack_a, stack_b);
@@ -38,7 +38,7 @@ void	sort_five(t_node **stack_a, t_node **stack_b)
 	pa(stack_a, stack_b);
 }
 
-void	push_to_b(t_node **stack, t_node **stack_b, int size)
+static void	push_to_b(t_node **stack, t_node **stack_b, int size)
 {
 	int swap_size;
 }
