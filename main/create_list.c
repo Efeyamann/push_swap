@@ -46,7 +46,7 @@ static void	free_list(t_node *head)
 {
 	t_node	*temp;
 
-	while (temp != NULL)
+	while (head)
 	{
 		temp = head;
 		head = head->next;
@@ -58,9 +58,17 @@ static void	append_to_list(t_node **head, int value)
 {
 	t_node	*current;
 
+	if (*head == NULL)
+	{
+		*head = new_node(value);
+		if (!*head)
+			exit(1);
+		return;
+	}
 	if (is_duplicate(*head, value))
 	{
-		free_list(*head);
+		if (*head)
+			free_list(*head);
 		ft_printf("Error\n");
 		exit(0);
 	}
@@ -87,12 +95,12 @@ t_node	*create_list(char *argv[])
 	{
 		if (!is_valid_number(argv[i]))
 		{
-			ft_printf("Error");
+			ft_printf("Error\n");
 			free_list(head);
 			exit(1);
 		}
 		value = ft_atoi(argv[i]);
-		append_to_list(&head, ft_atoi(argv[i]));
+		append_to_list(&head, value);
 		i++;
 	}
 	return (head);

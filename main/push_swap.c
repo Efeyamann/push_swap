@@ -38,9 +38,40 @@ static void	sort_five(t_node **stack_a, t_node **stack_b)
 	pa(stack_a, stack_b);
 }
 
-static void	push_to_b(t_node **stack, t_node **stack_b, int size)
+static void	push_to_b(t_node **stack_a, t_node **stack_b, int size)
 {
 	int swap_size;
+	int	n_smallest;
+	int count;
+
+	swap_size = size / 4;
+	n_smallest = find_smallest(*stack_a, swap_size);
+	count = 0;
+	while(*stack_a)
+	{
+		if ((*stack_a)->value <= n_smallest)
+		{
+			pb(stack_a, stack_b);
+			count++;
+			if (count % swap_size == 0)
+				n_smallest = find_smallest(*stack_a, swap_size);
+		}
+		else
+			ra(stack_a);
+	}
+}
+
+static void	push_to_a(t_node **stack_a, t_node **stack_b)
+{
+	t_node *highest_node;
+	
+	while (*stack_b)
+	{
+		highest_node = max_node(*stack_b);
+		while (*stack_b != highest_node)
+			rb(stack_b);
+		pa(stack_a, stack_b);
+	}
 }
 
 void	main_sort(t_node **stack_a, t_node **stack_b)

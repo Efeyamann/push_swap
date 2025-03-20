@@ -19,16 +19,16 @@ static void bubble_sort(int *arr, int size)
     int temp;
 
     i = 0;
-    while (i <= size)
+    while (i < size - 1)
     {
-        j = i + 1;
-        while(j <= size)
+        j = 0;
+        while(j < size - 1)
         {
-            if (arr[i] > arr[j])
+            if (arr[j] > arr[j + 1])
             {
                 temp = arr[j];
-                arr[i] = arr[j];
-                arr[j] = arr[i];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
             }
             j++;
         }
