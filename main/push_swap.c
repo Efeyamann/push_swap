@@ -6,7 +6,7 @@
 /*   By: efe <efe@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 22:20:04 by efe               #+#    #+#             */
-/*   Updated: 2025/03/19 23:58:12 by efe              ###   ########.fr       */
+/*   Updated: 2025/03/21 20:59:35 by efe              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,15 @@ static void	sort_five(t_node **stack_a, t_node **stack_b)
 	while (stack_len(*stack_a) > 3)
 		push_min(stack_a, stack_b);
 	sort_three(stack_a);
-	while(*stack_b)
+	while (*stack_b)
 		pa(stack_a, stack_b);
 }
 
 static void	push_to_b(t_node **stack_a, t_node **stack_b, int size)
 {
-	int swap_size;
+	int	swap_size;
 	int	n_smallest;
-	int count;
+	int	count;
 	int	total_pushed;
 
 	swap_size = size / 4;
@@ -51,7 +51,7 @@ static void	push_to_b(t_node **stack_a, t_node **stack_b, int size)
 	n_smallest = find_smallest(*stack_a, swap_size);
 	count = 0;
 	total_pushed = 0;
-	while(*stack_a && total_pushed < size - 3)
+	while (*stack_a && total_pushed < size - 3)
 	{
 		if ((*stack_a)->value <= n_smallest)
 		{
@@ -68,7 +68,7 @@ static void	push_to_b(t_node **stack_a, t_node **stack_b, int size)
 
 static void	push_to_a(t_node **stack_a, t_node **stack_b)
 {
-	t_node *highest_node;
+	t_node	*highest_node;
 	int		pos;
 	int		len;
 
@@ -79,17 +79,17 @@ static void	push_to_a(t_node **stack_a, t_node **stack_b)
 		len = stack_len(*stack_b);
 		if (*stack_b != highest_node)
 		{
-			if ( pos <= len / 2)
+			if (pos <= len / 2)
 			{
-			while (*stack_b != highest_node)
+				while (*stack_b != highest_node)
 					rb(stack_b);
 			}
 			else
 			{
-				while(*stack_b != highest_node)
+				while (*stack_b != highest_node)
 					rrb(stack_b);
 			}
-		}	
+		}
 		pa(stack_a, stack_b);
 	}
 }

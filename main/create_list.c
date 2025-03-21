@@ -6,15 +6,17 @@
 /*   By: efe <efe@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 15:18:24 by efe               #+#    #+#             */
-/*   Updated: 2025/03/01 15:30:26 by efe              ###   ########.fr       */
+/*   Updated: 2025/03/21 21:26:32 by efe              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <unistd.h>
 
 static int	is_valid_number(char *str)
 {
-	int	i;
+	int		i;
+	char	temp[2];
 
 	i = 0;
 	if (str[i] == '-' || str[i] == '+')
@@ -23,7 +25,9 @@ static int	is_valid_number(char *str)
 		return (0);
 	while (str[i])
 	{
-		if (!is_number(str[i]))
+		temp[0] = str[i];
+		temp[1] = '\0';
+		if (!is_number(temp))
 			return (0);
 		i++;
 	}
@@ -63,13 +67,13 @@ static void	append_to_list(t_node **head, int value)
 		*head = new_node(value);
 		if (!*head)
 			exit(1);
-		return;
+		return ;
 	}
 	if (is_duplicate(*head, value))
 	{
 		if (*head)
 			free_list(*head);
-		ft_printf("Error\n");
+		write(2, "Error\n", 6);
 		exit(0);
 	}
 	current = *head;
@@ -95,7 +99,7 @@ t_node	*create_list(char *argv[])
 	{
 		if (!is_valid_number(argv[i]))
 		{
-			ft_printf("Error\n");
+			write(2, "Error\n", 6);
 			free_list(head);
 			exit(1);
 		}

@@ -6,17 +6,18 @@
 /*   By: efe <efe@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:24:35 by efe               #+#    #+#             */
-/*   Updated: 2025/03/19 23:31:11 by efe              ###   ########.fr       */
+/*   Updated: 2025/03/21 21:23:30 by efe              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "unistd.h"
 
 int	validate_args(char **args, int allocated)
 {
 	if (!checker(args))
 	{
-		ft_printf("Error\n");
+		write(2, "Error\n", 6);
 		if (allocated)
 			free_args(args);
 		exit(1);
@@ -26,12 +27,12 @@ int	validate_args(char **args, int allocated)
 
 t_node *initialize_stack(int argc, char *argv[], int *allocated, char ***args_ptr)
 {
-	t_node *stack_a;
+	t_node	*stack_a;
 
 	stack_a = NULL;
 	*allocated = 0;
 	if (argc < 2)
-		return (ft_printf("Error\n"), NULL);
+		return (write(2, "Error\n", 6), NULL);
 	if (argc == 2)
 	{
 		*args_ptr = ft_split(argv[1], ' ');
@@ -44,7 +45,7 @@ t_node *initialize_stack(int argc, char *argv[], int *allocated, char ***args_pt
 	stack_a = create_list(*args_ptr);
 	if (!stack_a)
 	{
-		ft_printf("Error\n");
+		write(2, "Error\n", 6);
 		if (*allocated)
 			free_args(*args_ptr);
 		return (NULL);
@@ -52,7 +53,7 @@ t_node *initialize_stack(int argc, char *argv[], int *allocated, char ***args_pt
 	return (stack_a);
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_node	*stack_a;
 	t_node	*stack_b;

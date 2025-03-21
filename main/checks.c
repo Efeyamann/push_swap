@@ -6,13 +6,14 @@
 /*   By: efe <efe@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 14:16:38 by efe               #+#    #+#             */
-/*   Updated: 2025/03/01 15:28:34 by efe              ###   ########.fr       */
+/*   Updated: 2025/03/21 21:26:28 by efe              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <unistd.h>
 
-int	is_number(const char *str)
+int	is_number(char *str)
 {
 	int	i;
 
@@ -73,14 +74,13 @@ int	is_duplicate(t_node *stack, int num)
 int	checker(char **argv)
 {
 	int	i;
-	int	result;
 
 	i = 0;
 	while (argv[i])
 	{
-		if (!is_number(argv[i] || !is_over_under_flow(argv[i])))
+		if (!is_number(argv[i]) || !is_over_under_flow(argv[i]))
 		{
-			ft_printf("Error\n");
+			write(2, "Error\n", 6);
 			return (0);
 		}
 		i++;

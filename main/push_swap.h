@@ -6,15 +6,14 @@
 /*   By: efe <efe@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:24:50 by efe               #+#    #+#             */
-/*   Updated: 2025/03/19 23:57:23 by efe              ###   ########.fr       */
+/*   Updated: 2025/03/21 21:27:53 by efe              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "libft/libft.h"
-# include "ft_printf/ft_printf.h"
+# include "libft.h"
 
 typedef struct s_node
 {
@@ -28,7 +27,7 @@ t_node	*min_node(t_node *stack);
 t_node	*max_node(t_node *stack);
 int		stack_len(t_node *stack);
 int		checker(char **argv);
-int		is_number(const char str);
+int		is_number(char *str);
 int		is_duplicate(t_node *stack, int num);
 int		find_smallest(t_node *stack, int n);
 int		node_position(t_node *stack, t_node *target);
