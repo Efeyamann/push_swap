@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: efe <efe@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:24:35 by efe               #+#    #+#             */
-/*   Updated: 2025/03/21 21:23:30 by efe              ###   ########.fr       */
+/*   Updated: 2025/03/22 16:15:42 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,21 @@ int	validate_args(char **args, int allocated)
 	return (1);
 }
 
+char	**split_args(char *argv, int *allocated)
+{
+	char **args;
+
+	*allocated = 0;
+	if (ft_strchr(argv, ' ') == NULL)
+		args = &argv;
+	else
+	{
+		args = ft_split(argv, ' ');
+		*allocated = 1;
+	}
+	return (args);
+}
+
 t_node *initialize_stack(int argc, char *argv[], int *allocated, char ***args_ptr)
 {
 	t_node	*stack_a;
@@ -35,8 +50,7 @@ t_node *initialize_stack(int argc, char *argv[], int *allocated, char ***args_pt
 		return (write(2, "Error\n", 6), NULL);
 	if (argc == 2)
 	{
-		*args_ptr = ft_split(argv[1], ' ');
-		*allocated = 1;
+		*args_ptr = split_args(argv[1], allocated);
 	}
 	else
 		*args_ptr = argv + 1;
