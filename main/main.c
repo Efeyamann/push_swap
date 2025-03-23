@@ -6,7 +6,7 @@
 /*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:24:35 by efe               #+#    #+#             */
-/*   Updated: 2025/03/23 18:56:53 by esir             ###   ########.fr       */
+/*   Updated: 2025/03/23 20:24:59 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	main(int argc, char *argv[])
 	stack_a = init_stack(argc, argv, &allocated, &args);
 	if (!stack_a)
 		return (1);
-	main_sort(&stack_a, &stack_b);
+	turk_sort(&stack_a, &stack_b);
 	print_stack(stack_a);
 	free_stack(&stack_a);
 	free_stack(&stack_b);

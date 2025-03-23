@@ -6,7 +6,7 @@
 /*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:24:50 by efe               #+#    #+#             */
-/*   Updated: 2025/03/23 18:55:18 by esir             ###   ########.fr       */
+/*   Updated: 2025/03/23 20:33:23 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,9 @@ int		stack_len(t_node *stack);
 int		checker(char **argv);
 int		is_number(char *str);
 int		is_duplicate(t_node *stack, int num);
-int		find_smallest(t_node *stack, int n);
+int		*find_smallest_chunks(t_node *stack, int chunk_count);
 int		node_position(t_node *stack, t_node *target);
-int		*ccl(t_node *stack, int *chunks_count);
-int		qselect(int *arr, int low, int high, int n);
-void	pbc(t_node **stack_a, t_node **stack_b, int *c_limits, int tto_push);
-void	main_sort(t_node **stack_a, t_node **stack_b);
+void	turk_sort(t_node **stack_a, t_node **stack_b);
 void	free_args(char **args);
 void	free_stack(t_node **stack);
 void	push_min(t_node **stack_a, t_node **stack_b);

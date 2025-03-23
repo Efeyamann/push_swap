@@ -6,7 +6,7 @@
 /*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 19:37:13 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/23 19:00:03 by esir             ###   ########.fr       */
+/*   Updated: 2025/03/23 20:51:29 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,28 +72,25 @@ int	qselect(int *arr, int low, int high, int n)
 	return (arr[low]);
 }
 
-int	find_smallest(t_node *stack, int n)
+int	*find_smallest_chunks(t_node *stack, int chunk_count)
 {
-	int		result;
-	int		size;
-	int		i;
-	int		*arr;
-	t_node	*temp;
+	int	*arr;
+	int	*limits;
+	int	size;
+	int	i;
 
 	size = stack_len(stack);
-	if (n < 1 || n > size)
-		return (-1);
+	if (chunk_count < 1 || chunk_count > size)
+		return (NULL);
 	arr = malloc(sizeof(int) * size);
-	if (!arr)
-		return (-1);
-	temp = stack;
-	i = 0;
-	while (temp)
-	{
-		arr[i++] = temp->value;
-		temp = temp->next;
-	}
-	result = qselect(arr, 0, size - 1, n - 1);
+	limits = malloc(sizeof(int) * chunk_count);
+	if (!arr || !limits)
+		return (free(arr), free(limits), NULL);
+	t_node *temp = stack;
+	for (i = 0; temp; i++, temp = temp->next)
+		arr[i] = temp->value;
+	for (i = 0; i < chunk_count; i++)
+		limits[i] = qselect(arr, 0, size - 1, (size / chunk_count) * (i + 1) - 1);
 	free(arr);
-	return (result);
+	return (limits);
 }
