@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: efe <efe@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 19:53:38 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/19 23:53:34 by efe              ###   ########.fr       */
+/*   Updated: 2025/03/23 17:21:19 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,13 @@ t_node	*min_node(t_node *stack)
 	t_node	*min;
 
 	if (!stack)
-	{
 		return (NULL);
-	}
 	min = stack;
 	while (stack)
 	{
 		if (stack->value < min->value)
 		{
-			min = stack->next;
+			min = stack;
 		}
 		stack = stack->next;
 	}
@@ -69,7 +67,7 @@ t_node	*max_node(t_node *stack)
 	{
 		if (stack->value > max->value)
 		{
-			max = stack->next;
+			max = stack;
 		}
 		stack = stack->next;
 	}
@@ -79,9 +77,20 @@ t_node	*max_node(t_node *stack)
 void	push_min(t_node **stack_a, t_node **stack_b)
 {
 	t_node	*min;
+	int		stack_len_a;
+	int		min_pos;
 
 	min = min_node(*stack_a);
+	if (!min)
+		return ;
+	stack_len_a = stack_len(*stack_a);
+	min_pos = node_position(*stack_a, min);
 	while (*stack_a != min)
-		ra(stack_a);
+	{
+		if (min_pos <= stack_len_a / 2)
+			ra(stack_a);
+		else
+			rra(stack_a);
+	}
 	pb(stack_a, stack_b);
 }
