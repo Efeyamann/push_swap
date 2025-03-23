@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   find_smallest.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: efe <efe@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 19:37:13 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/21 21:25:53 by efe              ###   ########.fr       */
+/*   Updated: 2025/03/23 19:00:03 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdlib.h>
 
 int	node_position(t_node *stack, t_node *target)
 {
@@ -27,36 +28,56 @@ int	node_position(t_node *stack, t_node *target)
 	return (-1);
 }
 
-static	void bubble_sort(int *arr, int size)
+int	partition(int *arr, int low, int high)
 {
+	int	pivot;
 	int	i;
 	int	j;
 	int	temp;
 
-	i = 0;
-	while (i < size - 1)
+	pivot = arr[high];
+	i = low - 1;
+	j = low;
+	while (j < high)
 	{
-		j = 0;
-		while (j < size - 1)
+		if (arr[j] < pivot)
 		{
-			if (arr[j] > arr[j + 1])
-			{
-				temp = arr[j];
-				arr[j] = arr[j + 1];
-				arr[j + 1] = temp;
-			}
-			j++;
+			i++;
+			temp = arr[i];
+			arr[i] = arr[j];
+			arr[j] = temp;
 		}
-		i++;
+		j++;
 	}
+	temp = arr[i + 1];
+	arr[i + 1] = arr[high];
+	arr[high] = temp;
+	return (i + 1);
+}
+
+int	qselect(int *arr, int low, int high, int n)
+{
+	int	pivot_index;
+
+	while (low < high)
+	{
+		pivot_index = partition(arr, low, high);
+		if (pivot_index == n)
+			return (arr[pivot_index]);
+		else if (pivot_index > n)
+			high = pivot_index - 1;
+		else
+			low = pivot_index + 1;
+	}
+	return (arr[low]);
 }
 
 int	find_smallest(t_node *stack, int n)
 {
-	int		*arr;
+	int		result;
 	int		size;
 	int		i;
-	int		result;
+	int		*arr;
 	t_node	*temp;
 
 	size = stack_len(stack);
@@ -72,8 +93,7 @@ int	find_smallest(t_node *stack, int n)
 		arr[i++] = temp->value;
 		temp = temp->next;
 	}
-	bubble_sort(arr, size);
-	result = arr[n - 1];
+	result = qselect(arr, 0, size - 1, n - 1);
 	free(arr);
 	return (result);
 }
