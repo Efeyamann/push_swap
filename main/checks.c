@@ -6,7 +6,7 @@
 /*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 14:16:38 by efe               #+#    #+#             */
-/*   Updated: 2025/03/22 16:57:24 by esir             ###   ########.fr       */
+/*   Updated: 2025/03/23 18:12:33 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ int	is_number(char *str)
 	return (1);
 }
 
-#include <limits.h>
-
-static int is_over_under_flow(const char *str)
+static int	is_over_under_flow(const char *str)
 {
 	long long	result;
 	int			sign;
@@ -45,7 +43,7 @@ static int is_over_under_flow(const char *str)
 	i = 0;
 	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
 		i++;
-	if (str[i] == '-') 
+	if (str[i] == '-')
 	{
 		sign = -1;
 		i++;
@@ -55,12 +53,12 @@ static int is_over_under_flow(const char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		result = result * 10 + (str[i] - '0');
-		if ((sign == 1 && result > INT_MAX) || 
-			(sign == -1 && result * sign < INT_MIN))
-			return 0;
+		if ((sign == 1 && result > INT_MAX)
+			|| (sign == -1 && result * sign < INT_MIN))
+			return (0);
 		i++;
 	}
-	return 1;
+	return (1);
 }
 
 int	is_duplicate(t_node *stack, int num)

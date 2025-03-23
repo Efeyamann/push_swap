@@ -6,7 +6,7 @@
 /*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 22:20:04 by efe               #+#    #+#             */
-/*   Updated: 2025/03/23 17:27:10 by esir             ###   ########.fr       */
+/*   Updated: 2025/03/23 18:51:38 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	sort_three(t_node **stack)
 	int	c;
 
 	if (!stack || !*stack || !(*stack)->next || !(*stack)->next->next)
-		return;
+		return ;
 	a = (*stack)->value;
 	b = (*stack)->next->value;
 	c = (*stack)->next->next->value;
@@ -49,33 +49,19 @@ static void	sort_five(t_node **stack_a, t_node **stack_b)
 		pa(stack_a, stack_b);
 }
 
-static void	push_to_b(t_node **stack_a, t_node **stack_b, int size)
+static void	push_to_b(t_node **stack_a, t_node **stack_b)
 {
-	int	swap_size;
-	int	n_smallest;
-	int	count;
-	int	total_pushed;
+	int	stack_size;
+	int	total_to_push;
+	int	*chunk_limits;
 
-	swap_size = size / 4;
-	if (swap_size == 0)
-		swap_size = 1;
-	n_smallest = find_smallest(*stack_a, swap_size);
-	count = 0;
-	total_pushed = 0;
-	while (*stack_a && total_pushed < size - 3)
-	{
-		if ((*stack_a)->value <= n_smallest)
-		{
-			pb(stack_a, stack_b);
-			count++;
-			total_pushed++;
-			n_smallest = find_smallest(*stack_a, swap_size);
-			if (n_smallest == -1)
-				return;
-		}
-		else
-			ra(stack_a);
-	}
+	stack_size = stack_len(*stack_a);
+	total_to_push = stack_size - 3;
+	chunk_limits = ccl(*stack_a, NULL);
+	if (!chunk_limits)
+		return ;
+	pbc(stack_a, stack_b, chunk_limits, total_to_push);
+	free(chunk_limits);
 }
 
 static void	push_to_a(t_node **stack_a, t_node **stack_b)
@@ -89,18 +75,15 @@ static void	push_to_a(t_node **stack_a, t_node **stack_b)
 		highest_node = max_node(*stack_b);
 		pos = node_position(*stack_b, highest_node);
 		len = stack_len(*stack_b);
-		if (*stack_b != highest_node)
+		if (pos <= len / 2)
 		{
-			if (pos <= len / 2)
-			{
-				while (*stack_b != highest_node)
-					rb(stack_b);
-			}
-			else
-			{
-				while (*stack_b != highest_node)
-					rrb(stack_b);
-			}
+			while (*stack_b != highest_node)
+				rb(stack_b);
+		}
+		else
+		{
+			while (*stack_b != highest_node)
+				rrb(stack_b);
 		}
 		pa(stack_a, stack_b);
 	}
@@ -117,7 +100,7 @@ void	main_sort(t_node **stack_a, t_node **stack_b)
 		sort_five(stack_a, stack_b);
 	else
 	{
-		push_to_b(stack_a, stack_b, len);
+		push_to_b(stack_a, stack_b);
 		push_to_a(stack_a, stack_b);
 	}
 }

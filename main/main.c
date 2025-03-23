@@ -6,7 +6,7 @@
 /*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:24:35 by efe               #+#    #+#             */
-/*   Updated: 2025/03/23 16:58:47 by esir             ###   ########.fr       */
+/*   Updated: 2025/03/23 18:56:53 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	validate_args(char **args, int allocated)
 
 char	**split_args(char *argv, int *allocated)
 {
-	char **args;
+	char	**args;
 
 	*allocated = 0;
 	if (ft_strchr(argv, ' ') == NULL)
@@ -41,7 +41,7 @@ char	**split_args(char *argv, int *allocated)
 	return (args);
 }
 
-t_node *initialize_stack(int argc, char *argv[], int *allocated, char ***args_ptr)
+t_node	*init_stack(int argc, char *argv[], int *allocated, char ***args_ptr)
 {
 	t_node	*stack_a;
 
@@ -68,14 +68,14 @@ t_node *initialize_stack(int argc, char *argv[], int *allocated, char ***args_pt
 	return (stack_a);
 }
 
-void print_stack(t_node *stack)
+void	print_stack(t_node *stack)
 {
-    while (stack)
-    {
-        printf("%d ", stack->value);
-        stack = stack->next;
-    }
-    printf("\n");
+	while (stack)
+	{
+		printf("%d ", stack->value);
+		stack = stack->next;
+	}
+	printf("\n");
 }
 
 int	main(int argc, char *argv[])
@@ -86,7 +86,7 @@ int	main(int argc, char *argv[])
 	char	**args;
 
 	stack_b = NULL;
-	stack_a = initialize_stack(argc, argv, &allocated, &args);
+	stack_a = init_stack(argc, argv, &allocated, &args);
 	if (!stack_a)
 		return (1);
 	main_sort(&stack_a, &stack_b);
