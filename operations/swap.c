@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: efe <efe@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:24:39 by efe               #+#    #+#             */
-/*   Updated: 2025/03/19 22:11:33 by efe              ###   ########.fr       */
+/*   Updated: 2025/03/23 15:42:08 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <unistd.h>
 
 void	sa(t_node **stack_a)
 {
@@ -24,6 +25,7 @@ void	sa(t_node **stack_a)
 	first->next = second->next;
 	second->next = first;
 	*stack_a = second;
+	write(1, "sa\n", 3);
 }
 
 void	sb(t_node **stack_b)
@@ -38,10 +40,12 @@ void	sb(t_node **stack_b)
 	first->next = second->next;
 	second->next = first;
 	*stack_b = second;
+	write(1, "sb\n", 3);
 }
 
 void	ss(t_node **stack_a, t_node **stack_b)
 {
 	sa(stack_a);
 	sb(stack_b);
+	write(1, "ss\n", 3);
 }

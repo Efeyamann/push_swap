@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: efe <efe@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 13:21:18 by esir              #+#    #+#             */
-/*   Updated: 2025/03/19 22:05:23 by efe              ###   ########.fr       */
+/*   Updated: 2025/03/23 15:41:39 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <unistd.h>
 
 void	ra(t_node **stack_a)
 {
@@ -28,6 +29,7 @@ void	ra(t_node **stack_a)
 		last = last->next;
 	}
 	last->next = temp;
+	write(1, "ra\n", 3);
 }
 
 void	rb(t_node **stack_b)
@@ -46,10 +48,12 @@ void	rb(t_node **stack_b)
 		last = last->next;
 	}
 	last->next = temp;
+	write(1, "rb\n", 3);
 }
 
 void	rr(t_node **stack_a, t_node **stack_b)
 {
 	ra(stack_a);
 	rb(stack_b);
+	write(1, "rr\n", 3);
 }
