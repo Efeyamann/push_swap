@@ -6,7 +6,7 @@
 /*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 15:18:24 by efe               #+#    #+#             */
-/*   Updated: 2025/03/22 16:58:03 by esir             ###   ########.fr       */
+/*   Updated: 2025/03/23 15:21:32 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ static void	append_to_list(t_node **head, int value)
 	}
 	if (is_duplicate(*head, value))
 	{
-		if (*head)
-			free_list(*head);
+		free_list(*head);
 		write(2, "Error\n", 6);
 		exit(1);
 	}

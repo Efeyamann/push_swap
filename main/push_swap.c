@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: efe <efe@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 22:20:04 by efe               #+#    #+#             */
-/*   Updated: 2025/03/21 20:59:35 by efe              ###   ########.fr       */
+/*   Updated: 2025/03/23 17:27:10 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 static void	sort_three(t_node **stack)
 {
@@ -18,14 +19,24 @@ static void	sort_three(t_node **stack)
 	int	b;
 	int	c;
 
+	if (!stack || !*stack || !(*stack)->next || !(*stack)->next->next)
+		return;
 	a = (*stack)->value;
 	b = (*stack)->next->value;
 	c = (*stack)->next->next->value;
 	if (a > b && a > c)
-		ra(stack);
-	if (b > a && b > c)
+	{
+		if (b > c)
+			ra(stack);
+		else
+			rra(stack);
+	}
+	else if (b > a && b > c)
+	{
+		sa(stack);
 		rra(stack);
-	if ((*stack)->value > (*stack)->next->value)
+	}
+	else if (a > b)
 		sa(stack);
 }
 
@@ -58,8 +69,9 @@ static void	push_to_b(t_node **stack_a, t_node **stack_b, int size)
 			pb(stack_a, stack_b);
 			count++;
 			total_pushed++;
-			if (count % swap_size == 0 && *stack_a)
-				n_smallest = find_smallest(*stack_a, swap_size);
+			n_smallest = find_smallest(*stack_a, swap_size);
+			if (n_smallest == -1)
+				return;
 		}
 		else
 			ra(stack_a);

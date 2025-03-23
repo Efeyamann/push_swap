@@ -6,12 +6,13 @@
 /*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:24:35 by efe               #+#    #+#             */
-/*   Updated: 2025/03/22 16:15:42 by esir             ###   ########.fr       */
+/*   Updated: 2025/03/23 16:58:47 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "unistd.h"
+#include <stdio.h>
 
 int	validate_args(char **args, int allocated)
 {
@@ -67,6 +68,16 @@ t_node *initialize_stack(int argc, char *argv[], int *allocated, char ***args_pt
 	return (stack_a);
 }
 
+void print_stack(t_node *stack)
+{
+    while (stack)
+    {
+        printf("%d ", stack->value);
+        stack = stack->next;
+    }
+    printf("\n");
+}
+
 int	main(int argc, char *argv[])
 {
 	t_node	*stack_a;
@@ -79,6 +90,7 @@ int	main(int argc, char *argv[])
 	if (!stack_a)
 		return (1);
 	main_sort(&stack_a, &stack_b);
+	print_stack(stack_a);
 	free_stack(&stack_a);
 	free_stack(&stack_b);
 	if (allocated)
