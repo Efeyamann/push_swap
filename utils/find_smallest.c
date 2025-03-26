@@ -87,10 +87,19 @@ int	*find_smallest_chunks(t_node *stack, int chunk_count)
 	if (!arr || !limits)
 		return (free(arr), free(limits), NULL);
 	t_node *temp = stack;
-	for (i = 0; temp; i++, temp = temp->next)
-		arr[i] = temp->value;
-	for (i = 0; i < chunk_count; i++)
-		limits[i] = qselect(arr, 0, size - 1, (size / chunk_count) * (i + 1) - 1);
+	i = 0;
+	while (temp)
+	{
+		arr[i++] = temp->value;
+		temp = temp->next;
+	}
+	i = 0;
+	while (i < chunk_count)
+	{
+		limits[i] = qselect(arr, 0, size - 1, (size * (i + 1)) / chunk_count);
+		i++;
+	}
+	limits[chunk_count-1] = INT_MAX;
 	free(arr);
 	return (limits);
 }
