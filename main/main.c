@@ -68,16 +68,6 @@ t_node	*init_stack(int argc, char *argv[], int *allocated, char ***args_ptr)
 	return (stack_a);
 }
 
-void	print_stack(t_node *stack)
-{
-	while (stack)
-	{
-		printf("%d ", stack->value);
-		stack = stack->next;
-	}
-	printf("\n");
-}
-
 int	main(int argc, char *argv[])
 {
 	t_node	*stack_a;
@@ -90,7 +80,6 @@ int	main(int argc, char *argv[])
 	if (!stack_a)
 		return (1);
 	turk_sort(&stack_a, &stack_b);
-	print_stack(stack_a);
 	free_stack(&stack_a);
 	free_stack(&stack_b);
 	if (allocated)

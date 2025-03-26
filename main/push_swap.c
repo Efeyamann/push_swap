@@ -13,26 +13,33 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-static void	sort_three(t_node **stack)
+void sort_three(t_node **stack)
 {
-	int	a;
-	int	b;
-	int	c;
+    int top = (*stack)->value;
+    int mid = (*stack)->next->value;
+    int bottom = (*stack)->next->next->value;
 
-	if (!stack || !*stack || !(*stack)->next || !(*stack)->next->next)
-		return ;
-	a = (*stack)->value;
-	b = (*stack)->next->value;
-	c = (*stack)->next->next->value;
-	if ((a > b && b > c) || (b > c && c > a) || (c > a && a > b))
-	{
-		sa(stack);
-		sort_three(stack);
-	}
-	else if ((a > c && c > b) || (c > b && b > a))
-		ra(stack);
-	else if ((b > a && a > c))
-		rra(stack);
+    if (top > mid && top > bottom)
+    {
+        ra(stack);
+        if (mid > bottom)
+            sa(stack);
+    }
+    else if (mid > top && mid > bottom)
+    {
+        rra(stack);
+        if (top > bottom)
+            sa(stack);
+    }
+    else if (top < mid && mid > bottom)
+    {
+        rra(stack);
+        sa(stack);
+    }
+    else if (top > mid && top < bottom)
+    {
+        sa(stack);
+    }
 }
 
 static void	sort_five(t_node **stack_a, t_node **stack_b)
@@ -49,14 +56,22 @@ static void push_to_b(t_node **a, t_node **b, int *limits, int chunk_count)
     int stack_size = stack_len(*a);
     int to_keep = 3;
     int chunk_size = stack_size / chunk_count;
-    
     int curr_chunk = 0;
     int pushed = 0;
     int rotations = 0;
 
+    int largest[3];
+    find_three_largest(*a, largest);
     while (stack_len(*a) > to_keep && curr_chunk < chunk_count)
     {
-        if ((*a)->value <= limits[curr_chunk])
+        int current = (*a)->value;
+        if (current == largest[0] || current == largest[1] || current == largest[2])
+        {
+            ra(a);
+            rotations++;
+            continue;
+        }
+        if (current <= limits[curr_chunk])
         {
             pb(a, b);
             pushed++;
@@ -78,6 +93,16 @@ static void push_to_b(t_node **a, t_node **b, int *limits, int chunk_count)
             curr_chunk++;
             pushed = 0;
             rotations = 0;
+        }
+    }
+    if (stack_len(*a) > to_keep)
+    {
+        while (stack_len(*a) > to_keep)
+        {
+            if (!is_among_largest(*a, largest))
+                pb(a, b);
+            else
+                ra(a);
         }
     }
 }

@@ -15,6 +15,7 @@
 
 # include "libft.h"
 #include <stdio.h>
+#include <stdbool.h>
 
 typedef struct s_node
 {
@@ -30,10 +31,11 @@ int		stack_len(t_node *stack);
 int		checker(char **argv);
 int		is_number(char *str);
 int		is_duplicate(t_node *stack, int num);
-void	print_stack(t_node *stack);
 int		*find_smallest_chunks(t_node *stack, int chunk_count);
 int		node_position(t_node *stack, t_node *target);
 void	turk_sort(t_node **stack_a, t_node **stack_b);
+void	find_three_largest(t_node *stack, int largest[3]);
+bool	is_among_largest(t_node *node, int largest[3]);
 void	free_args(char **args);
 void	free_stack(t_node **stack);
 void	push_min(t_node **stack_a, t_node **stack_b);
