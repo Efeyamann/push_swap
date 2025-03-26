@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "libft.h"
+#include <stdio.h>
 
 typedef struct s_node
 {
@@ -29,6 +30,7 @@ int		stack_len(t_node *stack);
 int		checker(char **argv);
 int		is_number(char *str);
 int		is_duplicate(t_node *stack, int num);
+void	print_stack(t_node *stack);
 int		*find_smallest_chunks(t_node *stack, int chunk_count);
 int		node_position(t_node *stack, t_node *target);
 void	turk_sort(t_node **stack_a, t_node **stack_b);

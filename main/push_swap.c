@@ -44,65 +44,67 @@ static void	sort_five(t_node **stack_a, t_node **stack_b)
 		pa(stack_a, stack_b);
 }
 
-static void push_to_b(t_node **stack_a, t_node **stack_b, int *c_limits, int total_to_push)
+static void push_to_b(t_node **a, t_node **b, int *limits, int chunk_count)
 {
+    int stack_size = stack_len(*a);
+    int to_keep = 3;
+    int chunk_size = stack_size / chunk_count;
+    
     int curr_chunk = 0;
-    int stack_size = stack_len(*stack_a);
-    int pushed_count = 0;
+    int pushed = 0;
+    int rotations = 0;
 
-    while (total_to_push > 0 && *stack_a)
+    while (stack_len(*a) > to_keep && curr_chunk < chunk_count)
     {
-        if ((*stack_a)->value <= c_limits[curr_chunk])
+        if ((*a)->value <= limits[curr_chunk])
         {
-            pb(stack_a, stack_b);
-            total_to_push--;
-            pushed_count++;
-            if (*stack_b && (*stack_b)->value < c_limits[curr_chunk] / 2)
-                rb(stack_b);
+            pb(a, b);
+            pushed++;
+            if (*b && (*b)->value < limits[curr_chunk]/2)
+                rb(b);
+        }
+        else if ((*a)->next && (*a)->next->value <= limits[curr_chunk])
+        {
+            sa(a);
+            continue;
         }
         else
         {
-            ra(stack_a);
+            ra(a);
+            rotations++;
         }
-        if (pushed_count >= (curr_chunk + 1) * stack_size / (5))
+        if (pushed >= chunk_size || rotations >= stack_len(*a))
         {
             curr_chunk++;
-            pushed_count = 0;
+            pushed = 0;
+            rotations = 0;
         }
     }
 }
 
-static void	push_to_a(t_node **stack_a, t_node **stack_b)
+static void push_to_a(t_node **a, t_node **b)
 {
-	t_node	*highest_node;
-	int		pos;
-	int		len;
-
-	while (*stack_b)
-	{
-		highest_node = max_node(*stack_b);
-		if (!highest_node)
-			break;
-		pos = node_position(*stack_b, highest_node);
-		len = stack_len(*stack_b);
-
-		if (pos <= len / 2)
-			while (*stack_b != highest_node)
-				rb(stack_b);
-		else
-			while (*stack_b != highest_node)
-				rrb(stack_b);
-		pa(stack_a, stack_b);
-	}
+    while (*b)
+    {
+        t_node *max = max_node(*b);
+        int pos = node_position(*b, max);
+        int len = stack_len(*b);
+        
+        if (pos <= len/2)
+            while (*b != max) rb(b);
+        else
+            while (*b != max) rrb(b);
+            
+        pa(a, b);
+    }
 }
 
-void	turk_sort(t_node **stack_a, t_node **stack_b)
+void turk_sort(t_node **stack_a, t_node **stack_b)
 {
-	int	*chunk_limits;
-	int	total_to_push;
-	int	stack_size;
-
-	stack_size = stack_len(*stack_a);
+    int stack_size = stack_len(*stack_a);
+    int chunk_count = 5; 
+    int *chunk_limits;
+    
 	if (stack_size <= 3)
 	{
 		sort_three(stack_a);
@@ -113,12 +115,11 @@ void	turk_sort(t_node **stack_a, t_node **stack_b)
 		sort_five(stack_a, stack_b);
 		return ;
 	}
-	total_to_push = stack_size - 3;
-	chunk_limits = find_smallest_chunks(*stack_a, 5);
-	if (!chunk_limits)
-		return ;
-	push_to_b(stack_a, stack_b, chunk_limits, total_to_push);
-	sort_three(stack_a);
-	push_to_a(stack_a, stack_b);
-	free(chunk_limits);
-}
+    chunk_limits = find_smallest_chunks(*stack_a, chunk_count);
+    if (!chunk_limits)
+        return;
+    push_to_b(stack_a, stack_b, chunk_limits, chunk_count);
+    sort_three(stack_a);
+    push_to_a(stack_a, stack_b);
+    free(chunk_limits);
+} 
