@@ -18,7 +18,8 @@ SRC_FILES = $(SRC_DIR)/main.c \
             $(OPS_DIR)/swap.c \
             $(UTILS_DIR)/utils.c \
 			$(UTILS_DIR)/free.c \
-			$(UTILS_DIR)/find_smallest.c
+			$(UTILS_DIR)/find_smallest.c \
+			$(UTILS_DIR)/push_to_b_utils.c
 
 OBJ = $(SRC_FILES:.c=.o)
 LIBFT = $(LIBFT_DIR)/libft.a
