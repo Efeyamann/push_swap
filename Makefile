@@ -1,5 +1,5 @@
 NAME = push_swap
-CC = cc
+CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 INCLUDES = -I includes -I libft -I main
 
