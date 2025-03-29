@@ -9,17 +9,15 @@ UTILS_DIR = utils
 LIBFT_DIR = libft
 
 SRC_FILES = $(SRC_DIR)/main.c \
-            $(SRC_DIR)/checks.c \
-			$(SRC_DIR)/create_list.c \
 			$(SRC_DIR)/push_swap.c \
+			$(CHECK_AND_CREATE_DIR)/checks.c \
+			$(CHECK_AND_CREATE_DIR)/create_list.c \
             $(OPS_DIR)/push.c \
             $(OPS_DIR)/rotate.c \
             $(OPS_DIR)/reverse_rotate.c \
             $(OPS_DIR)/swap.c \
             $(UTILS_DIR)/utils.c \
-			$(UTILS_DIR)/free.c \
-			$(UTILS_DIR)/find_smallest.c \
-			$(UTILS_DIR)/push_to_b_utils.c
+			$(UTILS_DIR)/free.c
 
 OBJ = $(SRC_FILES:.c=.o)
 LIBFT = $(LIBFT_DIR)/libft.a

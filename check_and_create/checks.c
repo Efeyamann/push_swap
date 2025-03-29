@@ -3,16 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: heret <heret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 14:16:38 by efe               #+#    #+#             */
-/*   Updated: 2025/03/23 18:12:33 by esir             ###   ########.fr       */
+/*   Updated: 2025/03/29 14:31:22 by heret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <unistd.h>
-#include <limits.h>
+#include <stdbool.h>
+
+bool	stack_sorted(t_node *stack)
+{
+	if (!stack)
+		return (1);
+	while (stack->next)
+	{
+		if (stack->value > stack->next->value)
+			return (false);
+		stack = stack->next;
+	}
+	return (true);
+}
 
 int	is_number(char *str)
 {
@@ -53,8 +66,8 @@ static int	is_over_under_flow(const char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		result = result * 10 + (str[i] - '0');
-		if ((sign == 1 && result > INT_MAX)
-			|| (sign == -1 && result * sign < INT_MIN))
+		if ((sign == 1 && result > 2147483647)
+			|| (sign == -1 && result * sign < -2147483648))
 			return (0);
 		i++;
 	}

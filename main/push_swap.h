@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: heret <heret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:24:50 by efe               #+#    #+#             */
-/*   Updated: 2025/03/23 20:33:23 by esir             ###   ########.fr       */
+/*   Updated: 2025/03/29 15:43:48 by heret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,18 @@
 # define PUSH_SWAP_H
 
 # include "libft.h"
-#include <stdio.h>
-#include <stdbool.h>
+# include <stdio.h>
+# include <stdbool.h>
 
 typedef struct s_node
 {
 	int				value;
+	int				index;
+	int				push_cost;
+	bool			above_median;
+	bool			cheapest;
+	struct s_node	*target_node;
+	struct s_node	*prev;
 	struct s_node	*next;
 }	t_node;
 
@@ -31,14 +37,13 @@ int		stack_len(t_node *stack);
 int		checker(char **argv);
 int		is_number(char *str);
 int		is_duplicate(t_node *stack, int num);
-int		*find_smallest_chunks(t_node *stack, int chunk_count);
 int		node_position(t_node *stack, t_node *target);
+bool	stack_sorted(t_node *stack);
 void	turk_sort(t_node **stack_a, t_node **stack_b);
-void	find_three_largest(t_node *stack, int largest[3]);
-bool	is_among_largest(t_node *node, int largest[3]);
+void	init_nodes_a(t_node *stack_a, t_node *stack_b);
+void	current_index(t_node *stack);
 void	free_args(char **args);
 void	free_stack(t_node **stack);
-void	push_min(t_node **stack_a, t_node **stack_b);
 void	sa(t_node **stack_a);
 void	sb(t_node **stack_b);
 void	ss(t_node **stack_a, t_node **stack_b);

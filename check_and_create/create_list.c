@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: heret <heret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 15:18:24 by efe               #+#    #+#             */
-/*   Updated: 2025/03/23 15:21:32 by esir             ###   ########.fr       */
+/*   Updated: 2025/03/29 14:24:00 by heret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static t_node	*new_node(int value)
 	if (!node)
 		return (NULL);
 	node->value = value;
+	node->prev = NULL;
 	node->next = NULL;
 	return (node);
 }
@@ -41,6 +42,7 @@ static void	free_list(t_node *head)
 static void	append_to_list(t_node **head, int value)
 {
 	t_node	*current;
+	t_node	*new;
 
 	if (*head == NULL)
 	{
@@ -58,12 +60,14 @@ static void	append_to_list(t_node **head, int value)
 	current = *head;
 	while (current->next != NULL)
 		current = current->next;
-	current->next = new_node(value);
-	if (!current->next)
+	new = new_node(value);
+	if (!new)
 	{
 		free_list(*head);
 		exit(1);
 	}
+	current->next = new;
+	new->prev = current;
 }
 
 t_node	*create_list(char *argv[])

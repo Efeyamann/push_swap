@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: heret <heret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:24:35 by efe               #+#    #+#             */
-/*   Updated: 2025/03/23 20:24:59 by esir             ###   ########.fr       */
+/*   Updated: 2025/03/29 14:28:49 by heret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "unistd.h"
-#include <stdio.h>
 
 int	validate_args(char **args, int allocated)
 {
@@ -79,7 +78,15 @@ int	main(int argc, char *argv[])
 	stack_a = init_stack(argc, argv, &allocated, &args);
 	if (!stack_a)
 		return (1);
-	turk_sort(&stack_a, &stack_b);
+	if (!stack_sorted(stack_a))
+	{
+		if (stack_len(stack_a) == 2)
+			sa(&stack_a);
+		else if (stack_len(stack_a) == 3)
+			sort_three(&stack_a);
+		else
+			sort_stacks(&stack_a, &stack_b);
+	}
 	free_stack(&stack_a);
 	free_stack(&stack_b);
 	if (allocated)

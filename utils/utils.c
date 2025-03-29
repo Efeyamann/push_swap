@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: heret <heret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 19:53:38 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/23 20:59:59 by esir             ###   ########.fr       */
+/*   Updated: 2025/03/29 15:37:25 by heret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,29 +72,4 @@ t_node	*max_node(t_node *stack)
 		stack = stack->next;
 	}
 	return (max);
-}
-
-void	push_min(t_node **stack_a, t_node **stack_b)
-{
-	t_node	*min;
-	int		stack_len_a;
-	int		min_pos;
-	t_node	*start;
-
-	min = min_node(*stack_a);
-	if (!min)
-		return ;
-	stack_len_a = stack_len(*stack_a);
-	min_pos = node_position(*stack_a, min);
-	start = *stack_a;
-	while (*stack_a != min)
-	{
-		if (*stack_a == start)
-			return;
-		if (min_pos <= stack_len_a / 2)
-			ra(stack_a);
-		else
-			rra(stack_a);
-	}
-	pb(stack_a, stack_b);
 }
