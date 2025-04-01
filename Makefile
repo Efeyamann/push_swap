@@ -7,9 +7,10 @@ SRC_DIR = main
 OPS_DIR = operations
 UTILS_DIR = utils
 LIBFT_DIR = libft
+CHECK_AND_CREATE_DIR = check_and_create
 
 SRC_FILES = $(SRC_DIR)/main.c \
-			$(SRC_DIR)/push_swap.c \
+			$(SRC_DIR)/turk_sort.c \
 			$(CHECK_AND_CREATE_DIR)/checks.c \
 			$(CHECK_AND_CREATE_DIR)/create_list.c \
             $(OPS_DIR)/push.c \
@@ -17,7 +18,10 @@ SRC_FILES = $(SRC_DIR)/main.c \
             $(OPS_DIR)/reverse_rotate.c \
             $(OPS_DIR)/swap.c \
             $(UTILS_DIR)/utils.c \
-			$(UTILS_DIR)/free.c
+			$(UTILS_DIR)/free.c \
+			$(UTILS_DIR)/init_nodes_a.c \
+			$(UTILS_DIR)/init_nodes_b.c \
+			$(UTILS_DIR)/utils1.c
 
 OBJ = $(SRC_FILES:.c=.o)
 LIBFT = $(LIBFT_DIR)/libft.a

@@ -6,14 +6,14 @@
 /*   By: heret <heret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:24:35 by efe               #+#    #+#             */
-/*   Updated: 2025/03/29 14:28:49 by heret            ###   ########.fr       */
+/*   Updated: 2025/04/01 18:57:56 by heret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "unistd.h"
 
-int	validate_args(char **args, int allocated)
+static int	validate_args(char **args, int allocated)
 {
 	if (!checker(args))
 	{
@@ -25,7 +25,7 @@ int	validate_args(char **args, int allocated)
 	return (1);
 }
 
-char	**split_args(char *argv, int *allocated)
+static char	**split_args(char *argv, int *allocated)
 {
 	char	**args;
 
@@ -40,7 +40,7 @@ char	**split_args(char *argv, int *allocated)
 	return (args);
 }
 
-t_node	*init_stack(int argc, char *argv[], int *allocated, char ***args_ptr)
+static t_node	*init_stack(int argc, char *argv[], int *allocated, char ***args_ptr)
 {
 	t_node	*stack_a;
 
@@ -85,7 +85,7 @@ int	main(int argc, char *argv[])
 		else if (stack_len(stack_a) == 3)
 			sort_three(&stack_a);
 		else
-			sort_stacks(&stack_a, &stack_b);
+			turk_sort(&stack_a, &stack_b);
 	}
 	free_stack(&stack_a);
 	free_stack(&stack_b);

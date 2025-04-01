@@ -3,15 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: heret <heret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 13:41:25 by esir              #+#    #+#             */
-/*   Updated: 2025/03/23 15:41:00 by esir             ###   ########.fr       */
+/*   Updated: 2025/04/01 13:54:28 by heret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <unistd.h>
+
+void	rev_rotate_both(t_node **stack_a, t_node **stack_b, t_node *cheap_node)
+{
+	while (*stack_b != cheap_node->target_node && *stack_a != cheap_node)
+		rrr(stack_a, stack_b);
+	current_index(*stack_a);
+	current_index(*stack_b);
+}
 
 void	rra(t_node **stack_a)
 {
