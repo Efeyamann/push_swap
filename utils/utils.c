@@ -6,23 +6,26 @@
 /*   By: heret <heret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 19:53:38 by marvin            #+#    #+#             */
-/*   Updated: 2025/04/01 18:52:08 by heret            ###   ########.fr       */
+/*   Updated: 2025/04/01 22:01:04 by heret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "limits.h"
 
 int	stack_len(t_node *stack)
 {
-	int	i;
+	int	count;
 
-	i = 0;
+	if (!stack)
+		return (0);
+	count = 0;
 	while (stack)
 	{
-		i++;
 		stack = stack->next;
+		count++;
 	}
-	return (i);
+	return (count);
 }
 
 t_node	*last_node(t_node *stack)
@@ -38,38 +41,40 @@ t_node	*last_node(t_node *stack)
 
 t_node	*min_node(t_node *stack)
 {
-	t_node	*min;
+	long	min;
+	t_node	*minimum_node;
 
 	if (!stack)
 		return (NULL);
-	min = stack;
+	min = LONG_MAX;
 	while (stack)
 	{
-		if (stack->value < min->value)
+		if (stack->value < min)
 		{
-			min = stack;
+			min = stack->value;
+			minimum_node = stack;
 		}
 		stack = stack->next;
 	}
-	return (min);
+	return (minimum_node);
 }
 
 t_node	*max_node(t_node *stack)
 {
-	t_node	*max;
+	long	max;
+	t_node	*maximum_node;
 
 	if (!stack)
-	{
 		return (NULL);
-	}
-	max = stack;
+	max = LONG_MIN;
 	while (stack)
 	{
-		if (stack->value > max->value)
+		if (stack->value > max)
 		{
-			max = stack;
+			max = stack->value;
+			maximum_node = stack;
 		}
 		stack = stack->next;
 	}
-	return (max);
+	return (maximum_node);
 }

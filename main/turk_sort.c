@@ -6,21 +6,12 @@
 /*   By: heret <heret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 22:20:04 by efe               #+#    #+#             */
-/*   Updated: 2025/04/01 19:40:49 by heret            ###   ########.fr       */
+/*   Updated: 2025/04/01 22:54:02 by heret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <unistd.h>
-
-void printList(t_node* head) {
-    t_node* current = head;
-    while (current != NULL) {
-        printf("%d -> ", current->value);
-        current = current->next;
-    }
-    printf("NULL\n");
-}
 
 void	sort_three(t_node **stack_a)
 {
@@ -50,24 +41,27 @@ static void	move_a_to_b(t_node **stack_a, t_node **stack_b)
 		rev_rotate_both(stack_a, stack_b, cheapest_node);
 	}
 	prep_for_push(stack_a, cheapest_node, "stack_a");
-	prep_for_push(stack_b, cheapest_node, "stack_b");
+	prep_for_push(stack_b, cheapest_node->target_node, "stack_b");
 	pb(stack_b, stack_a);
 }
 
 static void	move_b_to_a(t_node **stack_a, t_node **stack_b)
 {
-	prep_for_push(stack_a, (*stack_a)->target_node, "stack_a");
+	prep_for_push(stack_a, (*stack_b)->target_node, "stack_a");
 	pa(stack_a, stack_b);
 }
 
 static void	min_on_top(t_node **stack_a)
 {
-	while ((*stack_a)->value != max_node(*stack_a)->value)
+	t_node	*min;
+
+	min = min_node(*stack_a);
+	while ((*stack_a)->value != min->value)
 	{
-		if (min_node(*stack_a)->above_median)
-			ra(stack_a);
-		else
+		if (min->above_median)
 			rra(stack_a);
+		else
+			ra(stack_a);
 	}
 }
 
@@ -77,7 +71,9 @@ void	turk_sort(t_node **stack_a, t_node **stack_b)
 
 	a_len = stack_len(*stack_a);
 	if (a_len-- > 3 && !stack_sorted(*stack_a))
+	{
 		pb(stack_b, stack_a);
+	}
 	if (a_len-- > 3 && !stack_sorted(*stack_a))
 		pb(stack_b, stack_a);
 	while (a_len-- > 3 && !stack_sorted(*stack_a))

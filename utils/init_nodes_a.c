@@ -6,7 +6,7 @@
 /*   By: heret <heret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 15:40:07 by heret             #+#    #+#             */
-/*   Updated: 2025/04/01 19:26:27 by heret            ###   ########.fr       */
+/*   Updated: 2025/04/01 21:40:07 by heret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static void	set_target_a(t_node *stack_a, t_node *stack_b)
 	while (stack_a)
 	{
 		best_match_index = LONG_MIN;
+		target_node = NULL;
 		current_b = stack_b;
 		while (current_b)
 		{

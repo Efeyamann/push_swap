@@ -6,7 +6,7 @@
 /*   By: heret <heret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:24:35 by efe               #+#    #+#             */
-/*   Updated: 2025/04/01 18:57:56 by heret            ###   ########.fr       */
+/*   Updated: 2025/04/01 22:49:24 by heret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,27 @@ static char	**split_args(char *argv, int *allocated)
 	return (args);
 }
 
-static t_node	*init_stack(int argc, char *argv[], int *allocated, char ***args_ptr)
+static t_node	*init_stack(int argc, char *argv[], int *allo, char ***args_ptr)
 {
 	t_node	*stack_a;
 
 	stack_a = NULL;
-	*allocated = 0;
+	*allo = 0;
 	if (argc < 2)
 		return (write(2, "Error\n", 6), NULL);
 	if (argc == 2)
 	{
-		*args_ptr = split_args(argv[1], allocated);
+		*args_ptr = split_args(argv[1], allo);
 	}
 	else
 		*args_ptr = argv + 1;
-	if (!validate_args(*args_ptr, *allocated))
+	if (!validate_args(*args_ptr, *allo))
 		return (NULL);
 	stack_a = create_list(*args_ptr);
 	if (!stack_a)
 	{
 		write(2, "Error\n", 6);
-		if (*allocated)
+		if (*allo)
 			free_args(*args_ptr);
 		return (NULL);
 	}
@@ -87,6 +87,7 @@ int	main(int argc, char *argv[])
 		else
 			turk_sort(&stack_a, &stack_b);
 	}
+	printList(stack_a);
 	free_stack(&stack_a);
 	free_stack(&stack_b);
 	if (allocated)
