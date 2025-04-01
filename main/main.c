@@ -6,7 +6,7 @@
 /*   By: heret <heret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:24:35 by efe               #+#    #+#             */
-/*   Updated: 2025/04/01 23:30:23 by heret            ###   ########.fr       */
+/*   Updated: 2025/04/01 23:51:19 by heret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ int	main(int argc, char *argv[])
 		else
 			turk_sort(&stack_a, &stack_b);
 	}
-	printLinkedList(stack_a);
 	free_stack(&stack_a);
 	free_stack(&stack_b);
 	if (allocated)

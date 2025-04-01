@@ -6,32 +6,12 @@
 /*   By: heret <heret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 22:20:04 by efe               #+#    #+#             */
-/*   Updated: 2025/04/01 23:29:53 by heret            ###   ########.fr       */
+/*   Updated: 2025/04/01 23:51:27 by heret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <unistd.h>
-
-void printLinkedList(t_node *head)
-{
-    t_node *current = head;
-
-    if (!current)
-    {
-        printf("(empty list)\n");
-        return;
-    }
-
-    while (current != NULL)
-    {
-        printf("%d", current->value);
-        if (current->next != NULL)
-            printf(" -> ");
-        current = current->next;
-    }
-    printf(" -> NULL\n");
-}
 
 void	sort_three(t_node **stack_a)
 {
