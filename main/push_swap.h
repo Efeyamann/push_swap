@@ -6,7 +6,7 @@
 /*   By: heret <heret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:24:50 by efe               #+#    #+#             */
-/*   Updated: 2025/04/01 22:54:16 by heret            ###   ########.fr       */
+/*   Updated: 2025/04/01 23:30:03 by heret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,17 @@ typedef struct s_node
 	struct s_node	*next;
 }	t_node;
 
+
+
+void printLinkedList(t_node *head);
+
+
 t_node	*create_list(char *argv[]);
 t_node	*last_node(t_node *stack);
 t_node	*min_node(t_node *stack);
 t_node	*max_node(t_node *stack);
 t_node	*get_cheapest(t_node *stack);
+t_node	*find_last(t_node *stack);
 int		stack_len(t_node *stack);
 int		checker(char **argv);
 int		is_number(char *str);

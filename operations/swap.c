@@ -3,49 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: heret <heret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:24:39 by efe               #+#    #+#             */
-/*   Updated: 2025/03/23 15:42:08 by esir             ###   ########.fr       */
+/*   Updated: 2025/04/01 23:22:33 by heret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <unistd.h>
 
-void	sa(t_node **stack_a)
+static void	swap(t_node **head)
 {
-	t_node	*first;
-	t_node	*second;
-
-	if (!stack_a || !(*stack_a) || !((*stack_a)->next))
+	if (!*head || !(*head)->next)
 		return ;
-	first = *stack_a;
-	second = first->next;
-	first->next = second->next;
-	second->next = first;
-	*stack_a = second;
+	*head = (*head)->next;
+	(*head)->prev->prev = *head;
+	(*head)->prev->next = (*head)->next;
+	if ((*head)->next)
+		(*head)->next->prev = (*head)->prev;
+	(*head)->next = (*head)->prev;
+	(*head)->prev = NULL;
+}
+
+void	sa(t_node	**a)
+{
+	swap(a);
 	write(1, "sa\n", 3);
 }
 
-void	sb(t_node **stack_b)
+void	sb(t_node **b)
 {
-	t_node	*first;
-	t_node	*second;
-
-	if (!stack_b || !(*stack_b) || !((*stack_b)->next))
-		return ;
-	first = *stack_b;
-	second = first->next;
-	first->next = second->next;
-	second->next = first;
-	*stack_b = second;
+	swap(b);
 	write(1, "sb\n", 3);
 }
 
-void	ss(t_node **stack_a, t_node **stack_b)
+void	ss(t_node **a, t_node **b)
 {
-	sa(stack_a);
-	sb(stack_b);
+	swap(a);
+	swap(b);
 	write(1, "ss\n", 3);
 }

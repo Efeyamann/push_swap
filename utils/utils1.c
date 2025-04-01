@@ -6,11 +6,20 @@
 /*   By: heret <heret@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 13:56:56 by heret             #+#    #+#             */
-/*   Updated: 2025/04/01 22:45:54 by heret            ###   ########.fr       */
+/*   Updated: 2025/04/01 23:24:20 by heret            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+t_node	*find_last(t_node *stack)
+{
+	if (!stack)
+		return (NULL);
+	while (stack->next)
+		stack = stack->next;
+	return (stack);
+}
 
 static int	ft_strcmp(const char *str1, const char *str2)
 {
