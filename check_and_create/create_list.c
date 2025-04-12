@@ -6,7 +6,7 @@
 /*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 15:18:24 by efe               #+#    #+#             */
-/*   Updated: 2025/04/12 17:16:01 by esir             ###   ########.fr       */
+/*   Updated: 2025/04/12 20:07:33 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,20 @@ static void	insert_at_end(t_node *head, int value)
 
 static void	append_to_list(t_node **head, int value)
 {
-	check_and_handle_error(head, value);
-	if (*head != NULL)
+	if (*head == NULL)
+	{
+		check_and_handle_error(head, value);
+	}
+	else
+	{
+		if (is_duplicate(*head, value))
+		{
+			free_list(*head);
+			write(2, "Error\n", 6);
+			exit(1);
+		}
 		insert_at_end(*head, value);
+	}
 }
 
 t_node	*create_list(char *argv[])
