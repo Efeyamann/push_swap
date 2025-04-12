@@ -6,7 +6,7 @@
 /*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 21:51:54 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/23 16:56:46 by esir             ###   ########.fr       */
+/*   Updated: 2025/04/12 17:16:08 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,18 @@ void	free_stack(t_node **stack)
 	{
 		temp = *stack;
 		*stack = (*stack)->next;
+		free(temp);
+	}
+}
+
+void	free_list(t_node *head)
+{
+	t_node	*temp;
+
+	while (head)
+	{
+		temp = head;
+		head = head->next;
 		free(temp);
 	}
 }

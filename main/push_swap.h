@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: heret <heret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:24:50 by efe               #+#    #+#             */
-/*   Updated: 2025/04/01 23:51:35 by heret            ###   ########.fr       */
+/*   Updated: 2025/04/12 17:16:27 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "libft.h"
 # include <stdbool.h>
-# include <stdio.h>
 
 typedef struct s_node
 {
@@ -46,6 +45,7 @@ void	turk_sort(t_node **stack_a, t_node **stack_b);
 void	init_nodes_a(t_node *stack_a, t_node *stack_b);
 void	init_nodes_b(t_node *stack_a, t_node *stack_b);
 void	set_cheapest(t_node *stack);
+void	free_list(t_node *head);
 void	current_index(t_node *stack);
 void	free_args(char **args);
 void	free_stack(t_node **stack);

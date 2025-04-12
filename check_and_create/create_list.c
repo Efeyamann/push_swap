@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: heret <heret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 15:18:24 by efe               #+#    #+#             */
-/*   Updated: 2025/04/01 19:40:24 by heret            ###   ########.fr       */
+/*   Updated: 2025/04/12 17:16:01 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,8 @@ static t_node	*new_node(int value)
 	return (node);
 }
 
-static void	free_list(t_node *head)
+static void	check_and_handle_error(t_node **head, int value)
 {
-	t_node	*temp;
-
-	while (head)
-	{
-		temp = head;
-		head = head->next;
-		free(temp);
-	}
-}
-
-static void	append_to_list(t_node **head, int value)
-{
-	t_node	*current;
-	t_node	*new;
-
 	if (*head == NULL)
 	{
 		*head = new_node(value);
@@ -59,17 +44,31 @@ static void	append_to_list(t_node **head, int value)
 		write(2, "Error\n", 6);
 		exit(1);
 	}
-	current = *head;
+}
+
+static void	insert_at_end(t_node *head, int value)
+{
+	t_node	*current;
+	t_node	*new;
+
+	current = head;
 	while (current->next != NULL)
 		current = current->next;
 	new = new_node(value);
 	if (!new)
 	{
-		free_list(*head);
+		free_list(head);
 		exit(1);
 	}
 	current->next = new;
 	new->prev = current;
+}
+
+static void	append_to_list(t_node **head, int value)
+{
+	check_and_handle_error(head, value);
+	if (*head != NULL)
+		insert_at_end(*head, value);
 }
 
 t_node	*create_list(char *argv[])
