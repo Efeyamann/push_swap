@@ -6,7 +6,7 @@
 /*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:24:35 by efe               #+#    #+#             */
-/*   Updated: 2025/04/12 20:08:15 by esir             ###   ########.fr       */
+/*   Updated: 2025/04/13 14:46:52 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int	main(int argc, char *argv[])
 	int		allocated;
 	char	**args;
 
+	if (argc == 1)
+		return (0);
 	stack_b = NULL;
 	stack_a = init_stack(argc, argv, &allocated, &args);
 	if (!stack_a)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: heret <heret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 14:16:38 by efe               #+#    #+#             */
-/*   Updated: 2025/04/01 18:41:26 by heret            ###   ########.fr       */
+/*   Updated: 2025/04/13 14:42:00 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	checker(char **argv)
 		if (!is_number(argv[i]) || !is_over_under_flow(argv[i]))
 		{
 			write(2, "Error\n", 6);
-			return (0);
+			exit(1);
 		}
 		i++;
 	}
