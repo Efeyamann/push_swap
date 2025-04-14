@@ -6,12 +6,62 @@
 /*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:24:35 by efe               #+#    #+#             */
-/*   Updated: 2025/04/13 14:46:52 by esir             ###   ########.fr       */
+/*   Updated: 2025/04/14 17:25:51 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "unistd.h"
+
+static int	add_to_result(char ***result, char **split, int *k, int *cap)
+{
+	int		i;
+	char	**new;
+
+	i = 0;
+	while (split[i])
+	{
+		if (*k >= *cap)
+		{
+			*cap *= 2;
+			new = realloc(*result, sizeof(char *) * (*cap));
+			if (!new)
+				return (0);
+			*result = new;
+		}
+		(*result)[*k] = split[i];
+		(*k)++;
+		i++;
+	}
+	return (1);
+}
+
+static char	**flatten_args(int argc, char **argv, int *allocated)
+{
+	char	**result;
+	char	**split;
+	int		i;
+	int		k;
+	int		cap;
+
+	*allocated = 1;
+	cap = 16;
+	result = malloc(sizeof(char *) * cap);
+	if (!result)
+		return (NULL);
+	i = 1;
+	k = 0;
+	while (i < argc)
+	{
+		split = ft_split(argv[i], ' ');
+		if (!split || !add_to_result(&result, split, &k, &cap))
+			return (NULL);
+		free(split);
+		i++;
+	}
+	result[k] = NULL;
+	return (result);
+}
 
 static int	validate_args(char **args, int allocated)
 {
@@ -25,36 +75,18 @@ static int	validate_args(char **args, int allocated)
 	return (1);
 }
 
-static char	**split_args(char *argv, int *allocated)
-{
-	char	**args;
-
-	*allocated = 0;
-	if (ft_strchr(argv, ' ') == NULL)
-		args = &argv;
-	else
-	{
-		args = ft_split(argv, ' ');
-		*allocated = 1;
-	}
-	return (args);
-}
-
-static t_node	*init_stack(int argc, char *argv[], int *allo, char ***args_ptr)
+static t_node	*init_stack(int argc, char **argv, int *allo, char ***args_ptr)
 {
 	t_node	*stack_a;
 
 	stack_a = NULL;
-	*allo = 0;
 	if (argc < 2)
-		return (write(2, "Error\n", 6), NULL);
-	if (argc == 2)
 	{
-		*args_ptr = split_args(argv[1], allo);
+		write(2, "Error\n", 6);
+		return (NULL);
 	}
-	else
-		*args_ptr = argv + 1;
-	if (!validate_args(*args_ptr, *allo))
+	*args_ptr = flatten_args(argc, argv, allo);
+	if (!*args_ptr || !validate_args(*args_ptr, *allo))
 		return (NULL);
 	stack_a = create_list(*args_ptr);
 	if (!stack_a)
@@ -67,7 +99,7 @@ static t_node	*init_stack(int argc, char *argv[], int *allo, char ***args_ptr)
 	return (stack_a);
 }
 
-int	main(int argc, char *argv[])
+int	main(int argc, char **argv)
 {
 	t_node	*stack_a;
 	t_node	*stack_b;
