@@ -6,12 +6,15 @@
 /*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:24:50 by efe               #+#    #+#             */
-/*   Updated: 2025/04/12 17:16:27 by esir             ###   ########.fr       */
+/*   Updated: 2025/04/15 15:02:43 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+
+# define INT_MAX 2147483647
+# define INT_MIN -2147483648
 
 # include "libft.h"
 # include <stdbool.h>
@@ -34,6 +37,7 @@ t_node	*min_node(t_node *stack);
 t_node	*max_node(t_node *stack);
 t_node	*get_cheapest(t_node *stack);
 t_node	*find_last(t_node *stack);
+t_node	*init_stack(int argc, char **argv, int *allo, char ***args_ptr);
 int		stack_len(t_node *stack);
 int		checker(char **argv);
 int		is_number(char *str);
@@ -49,6 +53,7 @@ void	free_list(t_node *head);
 void	current_index(t_node *stack);
 void	free_args(char **args);
 void	free_stack(t_node **stack);
+void	free_split(char **split);
 void	prep_for_push(t_node **stack, t_node *top_node, char *stack_name);
 void	sa(t_node **stack_a);
 void	sb(t_node **stack_b);
@@ -63,5 +68,9 @@ void	rr(t_node **stack_a, t_node **stack_b);
 void	rra(t_node **stack_a);
 void	rrb(t_node **stack_b);
 void	rrr(t_node **stack_a, t_node **stack_b);
+void	set_target_a(t_node *stack_a, t_node *stack_b);
+void	set_target_b(t_node *a, t_node *b);
+void	cost_analysis_a(t_node *stack_a, t_node *stack_b);
+long	ft_atol(const char *str);
 
 #endif

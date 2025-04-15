@@ -6,7 +6,7 @@
 /*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 15:18:24 by efe               #+#    #+#             */
-/*   Updated: 2025/04/12 20:07:33 by esir             ###   ########.fr       */
+/*   Updated: 2025/04/15 15:27:18 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,74 +29,63 @@ static t_node	*new_node(int value)
 	return (node);
 }
 
-static void	check_and_handle_error(t_node **head, int value)
-{
-	if (*head == NULL)
-	{
-		*head = new_node(value);
-		if (!*head)
-			exit(1);
-		return ;
-	}
-	if (is_duplicate(*head, value))
-	{
-		free_list(*head);
-		write(2, "Error\n", 6);
-		exit(1);
-	}
-}
-
-static void	insert_at_end(t_node *head, int value)
+static void	append_to_list(t_node **head, t_node *new_node)
 {
 	t_node	*current;
-	t_node	*new;
 
-	current = head;
-	while (current->next != NULL)
-		current = current->next;
-	new = new_node(value);
-	if (!new)
-	{
-		free_list(head);
-		exit(1);
-	}
-	current->next = new;
-	new->prev = current;
-}
-
-static void	append_to_list(t_node **head, int value)
-{
 	if (*head == NULL)
 	{
-		check_and_handle_error(head, value);
+		*head = new_node;
+		return ;
 	}
-	else
+	current = *head;
+	while (current->next != NULL)
+		current = current->next;
+	current->next = new_node;
+	new_node->prev = current;
+}
+
+static int	parse_and_append(t_node **head, char *arg)
+{
+	long	tmp;
+	int		value;
+	t_node	*node;
+
+	tmp = ft_atol(arg);
+	if (tmp < INT_MIN || tmp > INT_MAX)
+		return (0);
+	value = (int)tmp;
+	if (is_duplicate(*head, value))
+		return (0);
+	node = new_node(value);
+	if (!node)
+		return (0);
+	append_to_list(head, node);
+	return (1);
+}
+
+t_node	*build_list(char *argv[])
+{
+	int		i;
+	t_node	*head;
+
+	i = 0;
+	head = NULL;
+	while (argv[i])
 	{
-		if (is_duplicate(*head, value))
+		if (!parse_and_append(&head, argv[i]))
 		{
-			free_list(*head);
-			write(2, "Error\n", 6);
-			exit(1);
+			free_list(head);
+			return (NULL);
 		}
-		insert_at_end(*head, value);
+		i++;
 	}
+	return (head);
 }
 
 t_node	*create_list(char *argv[])
 {
-	int		i;
-	int		value;
-	t_node	*head;
-
 	if (!checker(argv))
-		exit(1);
-	head = NULL;
-	i = 0;
-	while (argv[i])
-	{
-		value = ft_atoi(argv[i]);
-		append_to_list(&head, value);
-		i++;
-	}
-	return (head);
+		return (NULL);
+	return (build_list(argv));
 }

@@ -6,7 +6,7 @@
 /*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 21:51:54 by marvin            #+#    #+#             */
-/*   Updated: 2025/04/12 17:16:08 by esir             ###   ########.fr       */
+/*   Updated: 2025/04/15 12:58:01 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,8 @@ void	free_args(char **args)
 	int	i;
 
 	i = 0;
-	while (args[i])
-	{
-		free(args[i]);
-		i++;
-	}
+	while (args && args[i])
+		free(args[i++]);
 	free(args);
 }
 
@@ -47,4 +44,14 @@ void	free_list(t_node *head)
 		head = head->next;
 		free(temp);
 	}
+}
+
+void	free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split && split[i])
+		free(split[i++]);
+	free(split);
 }

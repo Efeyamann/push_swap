@@ -1,49 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_nodes_b.c                                     :+:      :+:    :+:   */
+/*   init_b.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: heret <heret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 15:34:44 by heret             #+#    #+#             */
-/*   Updated: 2025/04/01 18:25:04 by heret            ###   ########.fr       */
+/*   Updated: 2025/04/15 15:10:41 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <limits.h>
 
-static void	set_target_b(t_node *a, t_node *b)
+void	set_target_b(t_node *a, t_node *b)
 {
 	t_node	*current_a;
-	t_node	*target_node;
-	long	best_match_index;
+	t_node	*best_target;
 
 	while (b)
 	{
-		best_match_index = LONG_MAX;
+		best_target = NULL;
 		current_a = a;
 		while (current_a)
 		{
-			if (current_a->value > b->value
-				&& current_a->value < best_match_index)
+			if (current_a->value > b->value)
 			{
-				best_match_index = current_a->value;
-				target_node = current_a;
+				if (!best_target || current_a->value < best_target->value)
+					best_target = current_a;
 			}
 			current_a = current_a->next;
 		}
-		if (best_match_index == LONG_MAX)
+		if (!best_target)
 			b->target_node = min_node(a);
 		else
-			b->target_node = target_node;
+			b->target_node = best_target;
 		b = b->next;
 	}
-}
-
-void	init_nodes_b(t_node *a, t_node *b)
-{
-	current_index(a);
-	current_index(b);
-	set_target_b(a, b);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   turk_sort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: heret <heret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 22:20:04 by efe               #+#    #+#             */
-/*   Updated: 2025/04/01 23:51:27 by heret            ###   ########.fr       */
+/*   Updated: 2025/04/15 18:46:38 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ static void	min_on_top(t_node **stack_a)
 	while ((*stack_a)->value != min->value)
 	{
 		if (min->above_median)
-			rra(stack_a);
-		else
 			ra(stack_a);
+		else
+			rra(stack_a);
 	}
 }
 

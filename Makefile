@@ -10,6 +10,7 @@ LIBFT_DIR = libft
 CHECK_AND_CREATE_DIR = check_and_create
 
 SRC_FILES = $(SRC_DIR)/main.c \
+			$(SRC_DIR)/init_stack.c \
 			$(SRC_DIR)/turk_sort.c \
 			$(CHECK_AND_CREATE_DIR)/checks.c \
 			$(CHECK_AND_CREATE_DIR)/create_list.c \
@@ -19,9 +20,10 @@ SRC_FILES = $(SRC_DIR)/main.c \
             $(OPS_DIR)/swap.c \
             $(UTILS_DIR)/utils.c \
 			$(UTILS_DIR)/free.c \
-			$(UTILS_DIR)/init_nodes_a.c \
-			$(UTILS_DIR)/init_nodes_b.c \
-			$(UTILS_DIR)/utils1.c
+			$(UTILS_DIR)/init_a.c \
+			$(UTILS_DIR)/init_b.c \
+			$(UTILS_DIR)/utils1.c \
+			$(UTILS_DIR)/init_ab.c
 
 OBJ = $(SRC_FILES:.c=.o)
 LIBFT = $(LIBFT_DIR)/libft.a

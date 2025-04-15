@@ -6,7 +6,7 @@
 /*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 14:16:38 by efe               #+#    #+#             */
-/*   Updated: 2025/04/13 14:42:00 by esir             ###   ########.fr       */
+/*   Updated: 2025/04/15 12:56:12 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	is_number(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] == '-' || str[i] == '+')
+	if (str[i] == '-' || str[i] == '+')
 		i++;
 	if (!str[i])
 		return (0);
@@ -96,8 +96,7 @@ int	checker(char **argv)
 	{
 		if (!is_number(argv[i]) || !is_over_under_flow(argv[i]))
 		{
-			write(2, "Error\n", 6);
-			exit(1);
+			return (0);
 		}
 		i++;
 	}

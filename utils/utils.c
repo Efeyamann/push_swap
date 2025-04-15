@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: heret <heret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 19:53:38 by marvin            #+#    #+#             */
-/*   Updated: 2025/04/01 22:01:04 by heret            ###   ########.fr       */
+/*   Updated: 2025/04/15 15:03:22 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "limits.h"
 
 int	stack_len(t_node *stack)
 {
@@ -46,7 +45,7 @@ t_node	*min_node(t_node *stack)
 
 	if (!stack)
 		return (NULL);
-	min = LONG_MAX;
+	min = INT_MAX;
 	while (stack)
 	{
 		if (stack->value < min)
@@ -66,7 +65,7 @@ t_node	*max_node(t_node *stack)
 
 	if (!stack)
 		return (NULL);
-	max = LONG_MIN;
+	max = INT_MIN;
 	while (stack)
 	{
 		if (stack->value > max)
