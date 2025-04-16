@@ -6,7 +6,7 @@
 /*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 12:09:06 by esir              #+#    #+#             */
-/*   Updated: 2025/04/15 15:21:23 by esir             ###   ########.fr       */
+/*   Updated: 2025/04/16 22:53:43 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,25 @@ static int	append_to_result(char ***result, char **split, int *k, int *cap)
 	return (1);
 }
 
+static int	process_arg(char *arg, char ***result, int *k, int *cap)
+{
+	char	**split;
+
+	if (!validate_arg(arg))
+		return (0);
+	split = ft_split(arg, ' ');
+	if (!split || !append_to_result(result, split, k, cap))
+	{
+		free_split(split);
+		return (0);
+	}
+	free_split(split);
+	return (1);
+}
+
 static char	**flatten_args(int argc, char **argv, int *allocated)
 {
 	char	**result;
-	char	**split;
 	int		i;
 	int		k;
 	int		cap;
@@ -68,10 +83,11 @@ static char	**flatten_args(int argc, char **argv, int *allocated)
 	k = 0;
 	while (i < argc)
 	{
-		split = ft_split(argv[i], ' ');
-		if (!split || !append_to_result(&result, split, &k, &cap))
-			return (free_split(split), free_args(result), NULL);
-		free_split(split);
+		if (!process_arg(argv[i], &result, &k, &cap))
+		{
+			free_args(result);
+			return (NULL);
+		}
 		i++;
 	}
 	result[k] = NULL;

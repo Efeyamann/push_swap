@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: heret <heret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 13:09:40 by esir              #+#    #+#             */
-/*   Updated: 2025/04/01 23:23:21 by heret            ###   ########.fr       */
+/*   Updated: 2025/04/16 13:05:50 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ static void	push(t_node **dst, t_node **src)
 	}
 }
 
-void	pa(t_node **a, t_node **b)
+void	pa(t_node **stack_a, t_node **stack_b)
 {
-	push(a, b);
+	push(stack_a, stack_b);
 	write(1, "pa\n", 3);
 }
 
-void	pb(t_node **b, t_node **a)
+void	pb(t_node **stack_b, t_node **stack_a)
 {
-	push(b, a);
+	push(stack_b, stack_a);
 	write(1, "pb\n", 3);
 }

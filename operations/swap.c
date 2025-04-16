@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: heret <heret@student.42.fr>                +#+  +:+       +#+        */
+/*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:24:39 by efe               #+#    #+#             */
-/*   Updated: 2025/04/01 23:22:33 by heret            ###   ########.fr       */
+/*   Updated: 2025/04/16 13:05:06 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,21 @@ static void	swap(t_node **head)
 	(*head)->prev = NULL;
 }
 
-void	sa(t_node	**a)
+void	sa(t_node	**stack_a)
 {
-	swap(a);
+	swap(stack_a);
 	write(1, "sa\n", 3);
 }
 
-void	sb(t_node **b)
+void	sb(t_node **stack_b)
 {
-	swap(b);
+	swap(stack_b);
 	write(1, "sb\n", 3);
 }
 
-void	ss(t_node **a, t_node **b)
+void	ss(t_node **stack_a, t_node **stack_b)
 {
-	swap(a);
-	swap(b);
+	swap(stack_a);
+	swap(stack_b);
 	write(1, "ss\n", 3);
 }

@@ -6,13 +6,11 @@
 /*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:24:35 by efe               #+#    #+#             */
-/*   Updated: 2025/04/15 15:13:00 by esir             ###   ########.fr       */
+/*   Updated: 2025/04/16 23:21:41 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "unistd.h"
-#include <stdio.h>
 
 int	main(int argc, char **argv)
 {

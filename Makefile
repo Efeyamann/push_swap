@@ -10,8 +10,9 @@ LIBFT_DIR = libft
 CHECK_AND_CREATE_DIR = check_and_create
 
 SRC_FILES = $(SRC_DIR)/main.c \
-			$(SRC_DIR)/init_stack.c \
 			$(SRC_DIR)/turk_sort.c \
+			$(CHECK_AND_CREATE_DIR)/init_stack.c \
+			$(CHECK_AND_CREATE_DIR)/init_utils.c \
 			$(CHECK_AND_CREATE_DIR)/checks.c \
 			$(CHECK_AND_CREATE_DIR)/create_list.c \
             $(OPS_DIR)/push.c \

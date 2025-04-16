@@ -6,11 +6,24 @@
 /*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 19:53:38 by marvin            #+#    #+#             */
-/*   Updated: 2025/04/15 15:03:22 by esir             ###   ########.fr       */
+/*   Updated: 2025/04/16 13:03:51 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	sort_three(t_node **stack_a)
+{
+	t_node	*max;
+
+	max = max_node(*stack_a);
+	if (max == *stack_a)
+		ra(stack_a);
+	else if ((*stack_a)->next == max)
+		rra(stack_a);
+	if ((*stack_a)->value > (*stack_a)->next->value)
+		sa(stack_a);
+}
 
 int	stack_len(t_node *stack)
 {

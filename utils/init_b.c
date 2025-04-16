@@ -6,34 +6,34 @@
 /*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 15:34:44 by heret             #+#    #+#             */
-/*   Updated: 2025/04/15 15:10:41 by esir             ###   ########.fr       */
+/*   Updated: 2025/04/16 13:04:40 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	set_target_b(t_node *a, t_node *b)
+void	assign_target_b(t_node *stack_a, t_node *stack_b)
 {
-	t_node	*current_a;
-	t_node	*best_target;
+	t_node	*a_cursor;
+	t_node	*target;
 
-	while (b)
+	while (stack_b)
 	{
-		best_target = NULL;
-		current_a = a;
-		while (current_a)
+		target = NULL;
+		a_cursor = stack_a;
+		while (a_cursor)
 		{
-			if (current_a->value > b->value)
+			if (a_cursor->value > stack_b->value)
 			{
-				if (!best_target || current_a->value < best_target->value)
-					best_target = current_a;
+				if (target == NULL || a_cursor->value < target->value)
+					target = a_cursor;
 			}
-			current_a = current_a->next;
+			a_cursor = a_cursor->next;
 		}
-		if (!best_target)
-			b->target_node = min_node(a);
+		if (target == NULL)
+			stack_b->target_node = min_node(stack_a);
 		else
-			b->target_node = best_target;
-		b = b->next;
+			stack_b->target_node = target;
+		stack_b = stack_b->next;
 	}
 }

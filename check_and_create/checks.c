@@ -6,12 +6,11 @@
 /*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 14:16:38 by efe               #+#    #+#             */
-/*   Updated: 2025/04/15 12:56:12 by esir             ###   ########.fr       */
+/*   Updated: 2025/04/16 23:22:29 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <unistd.h>
 #include <stdbool.h>
 
 bool	stack_sorted(t_node *stack)
@@ -95,9 +94,7 @@ int	checker(char **argv)
 	while (argv[i])
 	{
 		if (!is_number(argv[i]) || !is_over_under_flow(argv[i]))
-		{
 			return (0);
-		}
 		i++;
 	}
 	return (1);

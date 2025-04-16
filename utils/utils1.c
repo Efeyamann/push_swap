@@ -6,7 +6,7 @@
 /*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 13:56:56 by heret             #+#    #+#             */
-/*   Updated: 2025/04/15 14:55:48 by esir             ###   ########.fr       */
+/*   Updated: 2025/04/15 19:18:35 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_node	*get_cheapest(t_node *stack)
 	return (NULL);
 }
 
-void	prep_for_push(t_node **stack, t_node *top_node, char *stack_name)
+void	position_for_push(t_node **stack, t_node *top_node, char *stack_name)
 {
 	while (*stack != top_node)
 	{

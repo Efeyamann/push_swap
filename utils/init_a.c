@@ -6,101 +6,104 @@
 /*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 15:40:07 by heret             #+#    #+#             */
-/*   Updated: 2025/04/15 15:26:26 by esir             ###   ########.fr       */
+/*   Updated: 2025/04/16 23:20:57 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <unistd.h>
 
-void	current_index(t_node *stack)
+void	assign_indices(t_node *stack)
 {
-	int	i;
-	int	median;
+	int		position;
+	int		halfway;
 
-	i = 0;
+	position = 0;
 	if (!stack)
 		return ;
-	median = stack_len(stack) / 2;
+	halfway = stack_len(stack) / 2;
 	while (stack)
 	{
-		stack->index = i;
-		if (i <= median)
+		stack->index = position;
+		if (position <= halfway)
 			stack->above_median = true;
 		else
 			stack->above_median = false;
 		stack = stack->next;
-		i++;
+		position++;
 	}
 }
 
-void	set_target_a(t_node *stack_a, t_node *stack_b)
+void	assign_target_a(t_node *stack_a, t_node *stack_b)
 {
-	t_node	*current_b;
-	t_node	*best_target;
+	t_node	*b_cursor;
+	t_node	*optimal_match;
 
 	while (stack_a)
 	{
-		best_target = NULL;
-		current_b = stack_b;
-		while (current_b)
+		optimal_match = NULL;
+		b_cursor = stack_b;
+		while (b_cursor)
 		{
-			if (current_b->value < stack_a->value)
+			if (b_cursor->value < stack_a->value)
 			{
-				if (!best_target || current_b->value > best_target->value)
-					best_target = current_b;
+				if (!optimal_match || b_cursor->value > optimal_match->value)
+					optimal_match = b_cursor;
 			}
-			current_b = current_b->next;
+			b_cursor = b_cursor->next;
 		}
-		if (!best_target)
+		if (optimal_match == NULL)
 			stack_a->target_node = max_node(stack_b);
 		else
-			stack_a->target_node = best_target;
+			stack_a->target_node = optimal_match;
 		stack_a = stack_a->next;
 	}
 }
 
-void	cost_analysis_a(t_node *stack_a, t_node *stack_b)
+void	evaluate_costs(t_node *src_stack, t_node *target_stack)
 {
-	int	a_len;
-	int	b_len;
+	int	src_size;
+	int	tgt_size;
 
-	if (!stack_a || !stack_b)
+	if (!src_stack || !target_stack)
 		return ;
-	a_len = stack_len(stack_a);
-	b_len = stack_len(stack_b);
-	while (stack_a)
+	src_size = stack_len(src_stack);
+	tgt_size = stack_len(target_stack);
+	while (src_stack)
 	{
-		stack_a->push_cost = stack_a->index;
-		if (!(stack_a->above_median))
-			stack_a->push_cost = a_len - (stack_a->index);
-		if (stack_a->target_node)
+		if (src_stack->above_median)
+			src_stack->push_cost = src_stack->index;
+		else
+			src_stack->push_cost = src_size - src_stack->index;
+		if (src_stack->target_node)
 		{
-			if (stack_a->target_node->above_median)
-				stack_a->push_cost += stack_a->target_node->index;
+			if (src_stack->target_node->above_median)
+				src_stack->push_cost += src_stack->target_node->index;
 			else
-				stack_a->push_cost += b_len - (stack_a->target_node->index);
+				src_stack->push_cost
+					+= tgt_size - src_stack->target_node->index;
 		}
-		stack_a = stack_a->next;
+		src_stack = src_stack->next;
 	}
 }
 
-void	set_cheapest(t_node *stack)
+void	mark_cheapest_node(t_node *stack)
 {
-	long	cheapest_value;
-	t_node	*cheapest_node;
+	long	lowest_cost;
+	t_node	*min_node;
 
 	if (!stack)
 		return ;
-	cheapest_value = INT_MAX;
+	lowest_cost = INT_MAX;
+	min_node = NULL;
 	while (stack)
 	{
-		if (stack->push_cost < cheapest_value)
+		if (stack->push_cost < lowest_cost)
 		{
-			cheapest_value = stack->push_cost;
-			cheapest_node = stack;
+			lowest_cost = stack->push_cost;
+			min_node = stack;
 		}
 		stack = stack->next;
 	}
-	cheapest_node->cheapest = true;
+	if (min_node != NULL)
+		min_node->cheapest = true;
 }

@@ -6,13 +6,11 @@
 /*   By: esir <esir@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 15:18:24 by efe               #+#    #+#             */
-/*   Updated: 2025/04/15 15:27:18 by esir             ###   ########.fr       */
+/*   Updated: 2025/04/16 23:22:06 by esir             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <unistd.h>
-#include <stdio.h>
 
 static t_node	*new_node(int value)
 {
